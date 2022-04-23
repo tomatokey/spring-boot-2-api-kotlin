@@ -1,10 +1,10 @@
 package com.tomatokey.prototype.application;
 
-import com.tomatokey.prototype.domain.models.user.User;
-import com.tomatokey.prototype.domain.models.user.UserRepository;
-import com.tomatokey.prototype.domain.models.userrole.UserRole;
-import com.tomatokey.prototype.domain.models.userrole.UserRoleRepository;
-import com.tomatokey.prototype.domain.models.userrole.UserRoleType;
+import com.tomatokey.prototype.domain.user.User;
+import com.tomatokey.prototype.domain.user.UserRepository;
+import com.tomatokey.prototype.domain.userrole.UserRole;
+import com.tomatokey.prototype.domain.userrole.UserRoleRepository;
+import com.tomatokey.prototype.domain.userrole.UserRoleType;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;

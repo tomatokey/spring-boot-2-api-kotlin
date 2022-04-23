@@ -6,10 +6,12 @@ import com.tomatokey.prototype.configuration.converter.jdbc.UserNameReadConverte
 import com.tomatokey.prototype.configuration.converter.jdbc.UserNameWriteConverter;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.data.jdbc.repository.config.AbstractJdbcConfiguration;
+import org.springframework.data.jdbc.repository.config.EnableJdbcAuditing;
 
 import java.util.Arrays;
 import java.util.List;
 
+@EnableJdbcAuditing // @CreatedDateや@LastModifiedDateのために付与
 @Configuration
 public class CustomJdbcConfiguration extends AbstractJdbcConfiguration {
 

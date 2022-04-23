@@ -1,4 +1,4 @@
-package com.tomatokey.prototype.domain.models.user;
+package com.tomatokey.prototype.domain.user;
 
 import org.springframework.data.repository.PagingAndSortingRepository;
 

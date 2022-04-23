@@ -1,6 +1,6 @@
 package com.tomatokey.prototype.configuration.converter.mvc;
 
-import com.tomatokey.prototype.domain.models.user.UserId;
+import com.tomatokey.prototype.domain.user.UserId;
 import org.springframework.core.convert.TypeDescriptor;
 import org.springframework.core.convert.converter.ConditionalGenericConverter;
 import org.springframework.stereotype.Component;

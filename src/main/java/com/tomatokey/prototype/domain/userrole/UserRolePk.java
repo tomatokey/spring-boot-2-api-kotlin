@@ -1,6 +1,6 @@
-package com.tomatokey.prototype.domain.models.userrole;
+package com.tomatokey.prototype.domain.userrole;
 
-import com.tomatokey.prototype.domain.models.user.UserId;
+import com.tomatokey.prototype.domain.user.UserId;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 

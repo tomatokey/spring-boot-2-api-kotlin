@@ -1,17 +1,18 @@
-package com.tomatokey.prototype.infrastructure.db.userrole;
+package com.tomatokey.prototype.infrastructure.db;
 
-import com.tomatokey.prototype.domain.models.user.User;
-import com.tomatokey.prototype.domain.models.user.UserId;
-import com.tomatokey.prototype.domain.models.userrole.UserRole;
-import com.tomatokey.prototype.domain.models.userrole.UserRolePk;
-import com.tomatokey.prototype.domain.models.userrole.UserRoleRepository;
-import com.tomatokey.prototype.domain.models.userrole.UserRoleType;
+import com.tomatokey.prototype.domain.user.User;
+import com.tomatokey.prototype.domain.user.UserId;
+import com.tomatokey.prototype.domain.userrole.UserRole;
+import com.tomatokey.prototype.domain.userrole.UserRolePk;
+import com.tomatokey.prototype.domain.userrole.UserRoleRepository;
+import com.tomatokey.prototype.domain.userrole.UserRoleType;
 import lombok.AllArgsConstructor;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.stereotype.Repository;
 
+import java.time.LocalDateTime;
 import java.util.Map;
 
 @AllArgsConstructor
@@ -22,10 +23,12 @@ public class UserRoleRepositoryImpl implements UserRoleRepository<UserRole, User
 
     @Override
     public UserRole save(UserRole entity) {
-        final String sql = "INSERT INTO user_role_t VALUES (:userId, :roleType)";
+        final String sql = "INSERT INTO user_role_t VALUES (:userId, :roleType, :registerTime, :updateTime)";
         final Map<String, Object> paramMap = Map.of(
                 "userId", entity.getUserId().getValue(),
-                "roleType", entity.getRoleType().name()
+                "roleType", entity.getRoleType().name(),
+                "registerTime", LocalDateTime.now(),
+                "updateTime", LocalDateTime.now()
         );
 
         jdbcTemplate.update(sql, new MapSqlParameterSource(paramMap));

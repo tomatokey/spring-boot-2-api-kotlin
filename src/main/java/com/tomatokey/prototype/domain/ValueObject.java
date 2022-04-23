@@ -1,4 +1,4 @@
-package com.tomatokey.prototype.domain.models;
+package com.tomatokey.prototype.domain;
 
 import java.io.Serializable;
 

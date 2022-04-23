@@ -1,4 +1,4 @@
-package com.tomatokey.prototype.domain.models.userrole;
+package com.tomatokey.prototype.domain.userrole;
 
 public enum UserRoleType {
     ADMIN,

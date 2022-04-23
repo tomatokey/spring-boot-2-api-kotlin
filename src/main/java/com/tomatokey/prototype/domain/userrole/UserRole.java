@@ -1,7 +1,8 @@
-package com.tomatokey.prototype.domain.models.userrole;
+package com.tomatokey.prototype.domain.userrole;
 
-import com.tomatokey.prototype.domain.models.user.User;
-import com.tomatokey.prototype.domain.models.user.UserId;
+import com.tomatokey.prototype.domain.Entity;
+import com.tomatokey.prototype.domain.user.User;
+import com.tomatokey.prototype.domain.user.UserId;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.ToString;
@@ -14,7 +15,7 @@ import org.springframework.data.relational.core.mapping.Table;
 @Getter
 @ToString
 @Table("user_role_t")
-public class UserRole {
+public class UserRole extends Entity {
 
     public static final String COLUMN_NAME_USER_ROLE_TYPE = "role_type";
 
