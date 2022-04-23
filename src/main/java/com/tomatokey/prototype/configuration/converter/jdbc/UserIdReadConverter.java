@@ -1,17 +1,17 @@
 package com.tomatokey.prototype.configuration.converter.jdbc;
 
-import com.tomatokey.prototype.domain.models.values.id.UserId;
+
+import com.tomatokey.prototype.domain.models.user.UserId;
 import org.springframework.core.convert.converter.Converter;
 import org.springframework.data.convert.ReadingConverter;
 
-import java.math.BigInteger;
 import java.util.Objects;
 
 @ReadingConverter
-public class UserIdReadConverter implements Converter<BigInteger, UserId> {
+public class UserIdReadConverter implements Converter<Number, UserId> {
 
-    public UserId convert(BigInteger id) {
-        return Objects.nonNull(id) ? new UserId(id.longValue()) : null;
+    public UserId convert(Number id) {
+        return Objects.nonNull(id) ? new UserId(id.intValue()) : null;
     }
 
 }

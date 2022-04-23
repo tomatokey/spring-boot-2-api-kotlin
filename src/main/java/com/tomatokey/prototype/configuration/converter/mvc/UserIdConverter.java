@@ -1,6 +1,6 @@
 package com.tomatokey.prototype.configuration.converter.mvc;
 
-import com.tomatokey.prototype.domain.models.values.id.UserId;
+import com.tomatokey.prototype.domain.models.user.UserId;
 import org.springframework.core.convert.TypeDescriptor;
 import org.springframework.core.convert.converter.ConditionalGenericConverter;
 import org.springframework.stereotype.Component;
@@ -28,7 +28,7 @@ public class UserIdConverter implements ConditionalGenericConverter {
     @Override
     public Object convert(Object source, TypeDescriptor sourceType, TypeDescriptor targetType) {
         if (source instanceof String o) {
-            return new UserId(Long.parseLong(o));
+            return new UserId(Integer.parseInt(o));
         }
 
         return source;

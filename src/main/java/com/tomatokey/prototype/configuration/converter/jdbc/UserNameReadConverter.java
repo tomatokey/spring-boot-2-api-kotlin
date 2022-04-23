@@ -1,6 +1,6 @@
 package com.tomatokey.prototype.configuration.converter.jdbc;
 
-import com.tomatokey.prototype.domain.models.values.UserName;
+import com.tomatokey.prototype.domain.models.user.UserName;
 import org.springframework.core.convert.converter.Converter;
 import org.springframework.data.convert.ReadingConverter;
 

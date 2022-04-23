@@ -16,9 +16,7 @@ public class CustomJdbcConfiguration extends AbstractJdbcConfiguration {
                 new UserIdReadConverter(),
                 new UserIdWriteConverter(),
                 new UserNameReadConverter(),
-                new UserNameWriteConverter(),
-                new RoleIdReadConverter(),
-                new RoleIdWriteConverter()
+                new UserNameWriteConverter()
         );
     }
 

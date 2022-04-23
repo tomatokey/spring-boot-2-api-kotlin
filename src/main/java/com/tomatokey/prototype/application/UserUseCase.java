@@ -1,11 +1,11 @@
 package com.tomatokey.prototype.application;
 
-import com.tomatokey.prototype.domain.constant.RoleType;
-import com.tomatokey.prototype.domain.models.entities.Role;
-import com.tomatokey.prototype.domain.models.entities.User;
-import com.tomatokey.prototype.domain.models.values.UserName;
-import com.tomatokey.prototype.infrastructure.db.RoleRepository;
-import com.tomatokey.prototype.infrastructure.db.UserRepository;
+import com.tomatokey.prototype.domain.models.userrole.UserRole;
+import com.tomatokey.prototype.domain.models.userrole.UserRolePk;
+import com.tomatokey.prototype.domain.models.userrole.UserRoleType;
+import com.tomatokey.prototype.domain.models.user.User;
+import com.tomatokey.prototype.domain.models.userrole.UserRoleRepository;
+import com.tomatokey.prototype.domain.models.user.UserRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -17,17 +17,20 @@ import java.util.Objects;
 public class UserUseCase {
 
     private final UserRepository userRepository;
-    private final RoleRepository roleRepository;
+    private final UserRoleRepository userRoleRepository;
 
     @Transactional
-    public User create(final User user, final RoleType ...roleTypes) {
-        final User inputUser = new User(null, new UserName("テスト"));
-        final User createdUser = userRepository.save(inputUser);
-        for(RoleType roleType: roleTypes) {
+    public User create(final User user, final UserRoleType...roleTypes) {
+        final User createdUser = userRepository.save(user);
+        final Iterable<UserRole> userRoles = userRoleRepository.findAllByUserId(createdUser.getUserId());
+        userRoles.forEach(userRole -> {
+            userRoleRepository.delete(userRole.getPk());
+        });
+        for (UserRoleType roleType: roleTypes) {
             if (Objects.isNull(roleType)) {
                 throw new IllegalArgumentException("権限が設定されていません");
             }
-            final Role createdRole = roleRepository.save(new Role(null, roleType, createdUser.getUserId()));
+            userRoleRepository.save(new UserRole(createdUser.getUserId(), roleType));
         }
         return createdUser;
     }

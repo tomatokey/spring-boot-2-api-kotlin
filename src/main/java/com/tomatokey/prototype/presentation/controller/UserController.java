@@ -1,10 +1,11 @@
 package com.tomatokey.prototype.presentation.controller;
 
 import com.tomatokey.prototype.application.UserUseCase;
-import com.tomatokey.prototype.domain.constant.RoleType;
-import com.tomatokey.prototype.domain.models.entities.User;
-import com.tomatokey.prototype.domain.models.values.id.UserId;
-import com.tomatokey.prototype.infrastructure.db.UserRepository;
+import com.tomatokey.prototype.domain.models.userrole.UserRoleType;
+import com.tomatokey.prototype.domain.models.user.User;
+import com.tomatokey.prototype.domain.models.user.UserId;
+import com.tomatokey.prototype.domain.models.userrole.UserRoleRepository;
+import com.tomatokey.prototype.domain.models.user.UserRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
@@ -16,11 +17,12 @@ import java.util.Optional;
 public class UserController {
 
     private final UserUseCase userUseCase;
+    private final UserRoleRepository userRoleRepository;
     private final UserRepository userRepository;
 
     @PostMapping
     public User create(@RequestBody User user) {
-        return userUseCase.create(user, RoleType.VIEWER, RoleType.EDITOR);
+        return userUseCase.create(user, UserRoleType.VIEWER, UserRoleType.EDITOR);
     }
 
     @GetMapping
@@ -37,6 +39,5 @@ public class UserController {
     public Optional<User> findById(@RequestParam("userId") UserId userId) {
         return userRepository.findById(userId);
     }
-
 
 }
