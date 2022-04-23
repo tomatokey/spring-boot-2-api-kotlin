@@ -1,6 +1,9 @@
 package com.tomatokey.prototype.configuration;
 
-import com.tomatokey.prototype.configuration.converter.jdbc.*;
+import com.tomatokey.prototype.configuration.converter.jdbc.UserIdReadConverter;
+import com.tomatokey.prototype.configuration.converter.jdbc.UserIdWriteConverter;
+import com.tomatokey.prototype.configuration.converter.jdbc.UserNameReadConverter;
+import com.tomatokey.prototype.configuration.converter.jdbc.UserNameWriteConverter;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.data.jdbc.repository.config.AbstractJdbcConfiguration;
 

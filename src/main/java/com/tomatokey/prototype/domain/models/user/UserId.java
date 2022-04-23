@@ -4,9 +4,6 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
 import com.tomatokey.prototype.domain.models.ValueObject;
 import lombok.Getter;
-import org.springframework.data.relational.core.mapping.Column;
-
-import static com.tomatokey.prototype.domain.models.user.User.COLUMN_NAME_USER_ID;
 
 
 @Getter
