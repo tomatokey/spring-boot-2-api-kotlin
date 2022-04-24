@@ -8,8 +8,7 @@ import lombok.Getter;
 
 @Getter
 public class UserId implements ValueObject<Integer> {
-
-
+    
     @JsonValue
     private Integer value;
 

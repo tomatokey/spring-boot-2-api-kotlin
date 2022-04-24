@@ -1,4 +1,4 @@
-package com.tomatokey.prototype.infrastructure.db;
+package com.tomatokey.prototype.infrastructure.userrole;
 
 import com.tomatokey.prototype.domain.user.User;
 import com.tomatokey.prototype.domain.user.UserId;
@@ -17,7 +17,7 @@ import java.util.Map;
 
 @AllArgsConstructor
 @Repository
-public class UserRoleRepositoryImpl implements UserRoleRepository<UserRole, UserRolePk> {
+public class DbUserRoleRepository implements UserRoleRepository<UserRole, UserRolePk> {
 
     private final NamedParameterJdbcTemplate jdbcTemplate;
 
