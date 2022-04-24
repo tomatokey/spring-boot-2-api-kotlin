@@ -35,6 +35,7 @@ public class UserIdConverter implements ConditionalGenericConverter {
 
     @Override
     public Object convert(Object source, TypeDescriptor sourceType, TypeDescriptor targetType) {
+        // JDK14から使用できるようになったinstanceofパターンマッチングを使用して判別
         if (source instanceof String o && targetType.getType() == UserId.class) {
             return new UserId(Integer.parseInt(o));
         }
