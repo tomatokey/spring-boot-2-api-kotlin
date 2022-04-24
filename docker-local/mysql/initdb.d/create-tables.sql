@@ -1,3 +1,6 @@
+CREATE USER 'user_ref'@'%' IDENTIFIED BY 'password';
+GRANT SELECT ON local_db.* TO 'user_ref'@'%';
+
 drop table if exists user_t;
 create table if not exists user_t(
     `user_id` int not null auto_increment,
