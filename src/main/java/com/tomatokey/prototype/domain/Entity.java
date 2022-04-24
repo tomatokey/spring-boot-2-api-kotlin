@@ -7,6 +7,10 @@ import org.springframework.data.relational.core.mapping.Column;
 
 import java.time.LocalDateTime;
 
+/**
+ * Entityの基底クラス
+ * 基底クラスは@JsonSerializeをつけることでJsonに変換されます
+ */
 public abstract class Entity {
 
     public static final String COLUMN_NAME_REGISTER_TIME = "register_time";
