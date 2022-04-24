@@ -31,6 +31,7 @@ public class UserUseCase {
             }
             userRoleRepository.save(new UserRole(createdUser.getUserId(), roleType));
         }
+
         return createdUser;
     }
 

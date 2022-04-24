@@ -13,7 +13,7 @@ import java.util.List;
 
 @EnableJdbcAuditing // @CreatedDateや@LastModifiedDateのために付与
 @Configuration
-public class CustomJdbcConfiguration extends AbstractJdbcConfiguration {
+public class JdbcConfiguration extends AbstractJdbcConfiguration {
 
     @Override
     protected List<?> userConverters() {

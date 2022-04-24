@@ -1,10 +1,11 @@
 package com.tomatokey.prototype.domain;
 
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.relational.core.mapping.Column;
 
-import java.time.Instant;
+import java.time.LocalDateTime;
 
 public abstract class Entity {
 
@@ -13,10 +14,12 @@ public abstract class Entity {
 
     @CreatedDate
     @Column(COLUMN_NAME_REGISTER_TIME)
-    private Instant registerTime;
+    @JsonSerialize
+    private LocalDateTime registerTime;
 
     @LastModifiedDate
     @Column(COLUMN_NAME_UPDATE_TIME)
-    private Instant updateTime;
+    @JsonSerialize
+    private LocalDateTime updateTime;
 
 }
