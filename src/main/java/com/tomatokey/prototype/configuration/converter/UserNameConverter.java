@@ -1,6 +1,6 @@
-package com.tomatokey.prototype.configuration.converter.mvc;
+package com.tomatokey.prototype.configuration.converter;
 
-import com.tomatokey.prototype.domain.user.UserId;
+import com.tomatokey.prototype.domain.user.UserName;
 import org.springframework.core.convert.TypeDescriptor;
 import org.springframework.core.convert.converter.ConditionalGenericConverter;
 import org.springframework.stereotype.Component;
@@ -10,7 +10,7 @@ import java.util.List;
 import java.util.Set;
 
 @Component
-public class UserIdConverter implements ConditionalGenericConverter {
+public class UserNameConverter implements ConditionalGenericConverter {
 
     @Override
     public boolean matches(TypeDescriptor sourceType, TypeDescriptor targetType) {
@@ -19,16 +19,20 @@ public class UserIdConverter implements ConditionalGenericConverter {
 
     @Override
     public Set<ConvertiblePair> getConvertibleTypes() {
-        ConvertiblePair[] pairs = new ConvertiblePair[] {
-                new ConvertiblePair(String.class, UserId.class)
+        final ConvertiblePair[] pairs = new ConvertiblePair[] {
+                new ConvertiblePair(String.class, UserName.class),
+                new ConvertiblePair(UserName.class, String.class)
         };
         return new HashSet(List.of(pairs));
     }
 
     @Override
     public Object convert(Object source, TypeDescriptor sourceType, TypeDescriptor targetType) {
-        if (source instanceof String o) {
-            return new UserId(Integer.parseInt(o));
+        if (source instanceof String o && targetType.getType() == UserName.class) {
+            return new UserName(o);
+        }
+        if (source instanceof UserName o && targetType.getType() == String.class) {
+            return o.getValue();
         }
 
         return source;
