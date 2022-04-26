@@ -19,7 +19,7 @@ import java.time.format.DateTimeFormatter;
 import java.util.TimeZone;
 
 @Configuration
-public class JacksonConfig {
+public class JacksonConfiguration {
 
     public static final String DATE_TIME_FORMAT = "yyyy/MM/dd'T'HH:mm:ss";
 
