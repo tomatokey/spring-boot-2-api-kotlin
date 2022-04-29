@@ -2,8 +2,8 @@ package com.tomatokey.prototype.configuration;
 
 import com.tomatokey.prototype.configuration.converter.UserIdConverter;
 import com.tomatokey.prototype.configuration.converter.UserNameConverter;
-import com.tomatokey.prototype.configuration.datasource.DataSourceType;
-import com.tomatokey.prototype.configuration.datasource.DynamicRoutingDataSource;
+import com.tomatokey.prototype.configuration.jdbc.DataSourceType;
+import com.tomatokey.prototype.configuration.jdbc.DynamicRoutingDataSource;
 import com.zaxxer.hikari.HikariDataSource;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.boot.jdbc.DataSourceBuilder;
@@ -46,7 +46,6 @@ public class JdbcConfiguration extends AbstractJdbcConfiguration {
     @Bean
     @Primary
     public DataSource dynamicRoutingDataSource() {
-        // 補足：Domaなどの3rdパーティーライブラリを用いる場合は、TransactionAwareDataSourceProxyでupdをラッピングする必要があります
         final DataSource dataSourceUpd = dataSourceUpd();
         final DataSource dataSourceRef = dataSourceRef();
         final Map<Object, Object> targetDataSources = Map.of(
@@ -56,7 +55,7 @@ public class JdbcConfiguration extends AbstractJdbcConfiguration {
 
         final DynamicRoutingDataSource dynamicRoutingDataSource = new DynamicRoutingDataSource();
         dynamicRoutingDataSource.setTargetDataSources(targetDataSources);
-        dynamicRoutingDataSource.setDefaultTargetDataSource(dataSourceUpd);
+        dynamicRoutingDataSource.setDefaultTargetDataSource(dataSourceRef);
 
         return dynamicRoutingDataSource;
     }

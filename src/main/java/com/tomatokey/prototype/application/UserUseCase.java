@@ -1,5 +1,6 @@
 package com.tomatokey.prototype.application;
 
+import com.tomatokey.prototype.configuration.jdbc.TransactionalForUpd;
 import com.tomatokey.prototype.domain.user.User;
 import com.tomatokey.prototype.domain.user.UserRepository;
 import com.tomatokey.prototype.domain.userrole.UserRole;
@@ -18,7 +19,7 @@ public class UserUseCase {
     private final UserRepository userRepository;
     private final UserRoleRepository userRoleRepository;
 
-    @Transactional
+    @TransactionalForUpd
     public User create(final User user, final UserRoleType...roleTypes) {
         final User createdUser = userRepository.save(user);
         final Iterable<UserRole> userRoles = userRoleRepository.findAllByUserId(createdUser.getUserId());
