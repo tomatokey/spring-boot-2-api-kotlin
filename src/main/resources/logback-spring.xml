@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+    <property name="FILE_NAME" value="contents.log" />
+    <property name="FORMAT" value="[%-5level] %d{yyyy-MM-dd HH:mm:ss.SSS} %logger{36} - %msg%n" />
+
+    <springProfile name="default">
+        <property name="SPRING_PROFILE" value="local" />
+        <property name="LOG_DIR" value="logs" />
+        <property name="LOG_LEVEL" value="INFO" />
+    </springProfile>
+
+    <springProfile name="production">
+        <property name="SPRING_PROFILE" value="production" />
+        <property name="LOG_DIR" value="logs" />
+        <property name="LOG_LEVEL" value="INFO" />
+    </springProfile>
+
+    <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <pattern>[${SPRING_PROFILE}]${FORMAT}</pattern>
+        </encoder>
+    </appender>
+
+    <appender name="FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>${LOG_DIR}/${SPRING_PROFILE}/${FILE_NAME}</file>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <fileNamePattern>${LOG_DIR}/${SPRING_PROFILE}/${FILE_NAME}.%d{yyyy-MM-dd}.log.tar.gz</fileNamePattern>
+            <maxHistory>7</maxHistory>
+        </rollingPolicy>
+        <encoder>
+            <pattern>[${SPRING_PROFILE}]${FORMAT}</pattern>
+        </encoder>
+    </appender>
+
+    <root level="${LOG_LEVEL}">
+        <springProfile name="default">
+            <appender-ref ref="STDOUT" />
+        </springProfile>
+        <appender-ref ref="FILE" />
+    </root>
+
+</configuration>
