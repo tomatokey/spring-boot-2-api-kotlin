@@ -5,10 +5,13 @@ import lombok.Builder;
 import lombok.Getter;
 import org.springframework.http.HttpStatus;
 
+import java.io.Serializable;
+
 @Getter
 @Builder
 @AllArgsConstructor
-public class ErrorResource {
+public class ErrorResource implements Serializable {
+
     private int status;
     private String message;
 

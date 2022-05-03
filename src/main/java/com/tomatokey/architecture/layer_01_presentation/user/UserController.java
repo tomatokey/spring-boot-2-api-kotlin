@@ -21,26 +21,20 @@ public class UserController {
     public UserResource create(@RequestBody UserCreateQuery query) {
         final User userInput = User.of(query.getUserName());
         final User userOutput = userUseCase.create(userInput);
-        return UserResource.builder()
-                .userId(userOutput.getUserId())
-                .userName(userOutput.getUserName())
-                .build();
+        return UserResource.of(userOutput);
     }
 
     @GetMapping
     public List<UserResource> findAll() {
         final List<User> users = userUseCase.findAll();
         return users.stream()
-                .map(user -> UserResource.builder()
-                        .userId(user.getUserId())
-                        .userName(user.getUserName())
-                        .build())
+                .map(UserResource::of)
                 .collect(Collectors.toList());
     }
 
     @GetMapping(path = "{userId}")
-    public Optional<User> findById(@PathVariable("userId") UserId userId) {
-        return userUseCase.findById(userId);
+    public Optional<UserResource> findById(@PathVariable("userId") UserId userId) {
+        return userUseCase.findById(userId).map(UserResource::of);
     }
 
 }
