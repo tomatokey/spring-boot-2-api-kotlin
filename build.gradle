@@ -26,7 +26,7 @@ dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-aop'
 	implementation 'org.springframework.boot:spring-boot-starter-data-jdbc'
 	implementation 'org.springframework.boot:spring-boot-starter-validation'
-//	implementation 'org.springframework.boot:spring-boot-starter-security'
+	implementation 'org.springframework.boot:spring-boot-starter-security'
 	// DB
 	runtimeOnly 'mysql:mysql-connector-java'
 	// Swagger
@@ -36,7 +36,7 @@ dependencies {
 	annotationProcessor 'org.projectlombok:lombok'
 	// テスト
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
-//	testImplementation 'org.springframework.security:spring-security-test'
+	testImplementation 'org.springframework.security:spring-security-test'
 	// サポートツール
 	developmentOnly 'org.springframework.boot:spring-boot-devtools'
 }
