@@ -1,4 +1,4 @@
-package com.tomatokey.framework.configuration.jdbc;
+package com.tomatokey.framework.configuration.jdbc.datasource;
 
 import java.util.Objects;
 

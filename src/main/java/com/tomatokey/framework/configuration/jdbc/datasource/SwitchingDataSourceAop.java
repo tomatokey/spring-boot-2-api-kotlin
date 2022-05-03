@@ -1,6 +1,7 @@
-package com.tomatokey.framework.configuration.jdbc;
+package com.tomatokey.framework.configuration.jdbc.datasource;
 
 import com.tomatokey.framework.configuration.ComponentOrder;
+import com.tomatokey.framework.configuration.jdbc.annotation.TransactionalForUpd;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;

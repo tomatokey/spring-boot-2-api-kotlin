@@ -1,4 +1,4 @@
-package com.tomatokey.framework.configuration.jdbc;
+package com.tomatokey.framework.configuration.jdbc.datasource;
 
 import org.springframework.jdbc.datasource.lookup.AbstractRoutingDataSource;
 

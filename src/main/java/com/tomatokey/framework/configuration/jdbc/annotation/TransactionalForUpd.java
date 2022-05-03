@@ -1,4 +1,4 @@
-package com.tomatokey.framework.configuration.jdbc;
+package com.tomatokey.framework.configuration.jdbc.annotation;
 
 import org.springframework.core.annotation.AliasFor;
 import org.springframework.transaction.annotation.Transactional;

@@ -1,4 +1,4 @@
-package com.tomatokey.framework.configuration.converter;
+package com.tomatokey.framework.configuration.jdbc.converter;
 
 import com.tomatokey.architecture.layer_03_domain.user.UserName;
 import org.springframework.core.convert.TypeDescriptor;

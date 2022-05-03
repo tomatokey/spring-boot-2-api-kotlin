@@ -6,7 +6,7 @@ import com.tomatokey.architecture.layer_03_domain.user.UserRepository;
 import com.tomatokey.architecture.layer_03_domain.userrole.UserRole;
 import com.tomatokey.architecture.layer_03_domain.userrole.UserRoleRepository;
 import com.tomatokey.architecture.layer_03_domain.userrole.UserRoleType;
-import com.tomatokey.framework.configuration.jdbc.TransactionalForUpd;
+import com.tomatokey.framework.configuration.jdbc.annotation.TransactionalForUpd;
 import com.tomatokey.framework.utils.CollectionUtils;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;

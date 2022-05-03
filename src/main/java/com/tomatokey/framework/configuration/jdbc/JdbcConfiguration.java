@@ -1,9 +1,9 @@
-package com.tomatokey.framework.configuration;
+package com.tomatokey.framework.configuration.jdbc;
 
-import com.tomatokey.framework.configuration.converter.UserIdConverter;
-import com.tomatokey.framework.configuration.jdbc.DataSourceType;
-import com.tomatokey.framework.configuration.jdbc.DynamicRoutingDataSource;
-import com.tomatokey.framework.configuration.converter.UserNameConverter;
+import com.tomatokey.framework.configuration.jdbc.converter.UserIdConverter;
+import com.tomatokey.framework.configuration.jdbc.datasource.DataSourceType;
+import com.tomatokey.framework.configuration.jdbc.datasource.DynamicRoutingDataSource;
+import com.tomatokey.framework.configuration.jdbc.converter.UserNameConverter;
 import com.zaxxer.hikari.HikariDataSource;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.boot.jdbc.DataSourceBuilder;
@@ -22,8 +22,8 @@ import java.util.Map;
 /**
  * JDBC用の設定クラス
  */
-@EnableJdbcAuditing // @CreatedDateや@LastModifiedDateを使用するために付与
 @Configuration
+@EnableJdbcAuditing // @CreatedDateや@LastModifiedDateを使用するために付与
 public class JdbcConfiguration extends AbstractJdbcConfiguration {
 
     @Override
