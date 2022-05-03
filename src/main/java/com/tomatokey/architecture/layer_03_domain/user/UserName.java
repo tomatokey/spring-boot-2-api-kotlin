@@ -5,9 +5,12 @@ import com.fasterxml.jackson.annotation.JsonValue;
 import com.tomatokey.architecture.layer_03_domain.ValueObject;
 import lombok.Getter;
 
+import javax.validation.constraints.NotBlank;
+
 @Getter
 public class UserName implements ValueObject<String> {
 
+    @NotBlank
     @JsonValue
     private String value;
 

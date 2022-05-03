@@ -6,11 +6,17 @@ import com.tomatokey.architecture.layer_03_domain.user.UserName;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 
+import javax.validation.Valid;
+import javax.validation.constraints.NotNull;
+
 @AllArgsConstructor
 @Getter
 public class UserCreateQuery implements Query {
 
     private UserId userId;
+
+    @NotNull
+    @Valid
     private UserName userName;
 
 }
