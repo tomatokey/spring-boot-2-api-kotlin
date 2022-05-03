@@ -1,9 +1,11 @@
 package com.tomatokey.framework.exception;
 
+import com.tomatokey.framework.utils.ObjectUtils;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.lang.Nullable;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
@@ -18,6 +20,29 @@ import java.util.stream.Collectors;
 public class ApiExceptionHandler extends ResponseEntityExceptionHandler {
 
     /**
+     * 共通のエラー処理
+     * このクラス内でハンドリングしたエラーは全てこのメソッドを経由してください
+     *
+     * @param ex
+     * @param body
+     * @param headers
+     * @param status
+     * @param request
+     * @return
+     */
+    @Override
+    protected ResponseEntity<Object> handleExceptionInternal(Exception ex, @Nullable Object body, HttpHeaders headers, HttpStatus status, WebRequest request) {
+        log.error(ex.getMessage(), ex);
+
+        if (ObjectUtils.isEmpty(body)) {
+            final ErrorResponse errorResponse = new ErrorResponse(status, status.name());
+            return super.handleExceptionInternal(ex, errorResponse, headers, status, request);
+        }
+
+        return super.handleExceptionInternal(ex, body, headers, status, request);
+    }
+
+    /**
      * リクエストパラメータのバリデーションでエラーが発生した場合のレスポンスをハンドリングします
      *
      * @param ex
@@ -28,7 +53,6 @@ public class ApiExceptionHandler extends ResponseEntityExceptionHandler {
      */
     @Override
     protected ResponseEntity<Object> handleMethodArgumentNotValid(MethodArgumentNotValidException ex, HttpHeaders headers, HttpStatus status, WebRequest request) {
-        log.error(ex.getMessage(), ex);
         final List<ValidError> errors = ex.getBindingResult().getFieldErrors().stream()
                 .map(ValidError::of)
                 .collect(Collectors.toList());
@@ -37,7 +61,7 @@ public class ApiExceptionHandler extends ResponseEntityExceptionHandler {
                 "パラメータが不正です",
                 errors
         );
-        return new ResponseEntity<>(errorResponse, new HttpHeaders(), status);
+        return handleExceptionInternal(ex, errorResponse, new HttpHeaders(), status, request);
     }
 
     /**
@@ -47,11 +71,9 @@ public class ApiExceptionHandler extends ResponseEntityExceptionHandler {
      * @param request
      * @return
      */
-    @ExceptionHandler(Throwable.class)
-    public ResponseEntity<ErrorResponse> handleUnexpectedException(Throwable ex, WebRequest request) {
-        log.error(ex.getMessage(), ex);
-        final ErrorResponse errorResponse = new ErrorResponse(HttpStatus.INTERNAL_SERVER_ERROR, "予期せぬ例外が起こりました。");
-        return new ResponseEntity<>(errorResponse, new HttpHeaders(), HttpStatus.INTERNAL_SERVER_ERROR);
+    @ExceptionHandler(Exception.class)
+    public ResponseEntity<Object> handleUnexpectedException(Exception ex, WebRequest request) {
+        return handleExceptionInternal(ex, null, new HttpHeaders(), HttpStatus.INTERNAL_SERVER_ERROR, request);
     }
 
 }
