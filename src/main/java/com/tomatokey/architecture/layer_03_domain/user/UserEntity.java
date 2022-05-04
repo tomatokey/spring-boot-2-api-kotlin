@@ -12,7 +12,7 @@ import org.springframework.data.relational.core.mapping.Table;
 @Getter
 @ToString
 @Table("user_t")
-public class User extends Entity {
+public class UserEntity extends Entity {
 
     public static final String COLUMN_NAME_USER_ID = "user_id";
     public static final String COLUMN_NAME_USER_NAME = "user_name";
@@ -24,8 +24,8 @@ public class User extends Entity {
     @Column(COLUMN_NAME_USER_NAME)
     private UserName userName;
 
-    public static User of(UserName userName) {
-        return new User(null, userName);
+    public static UserEntity of(UserName userName) {
+        return new UserEntity(null, userName);
     }
 
 }

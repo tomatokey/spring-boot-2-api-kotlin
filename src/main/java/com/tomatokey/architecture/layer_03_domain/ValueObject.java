@@ -3,6 +3,9 @@ package com.tomatokey.architecture.layer_03_domain;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
 import com.tomatokey.architecture.layer_03_domain.user.UserId;
+import com.tomatokey.framework.utils.ObjectUtils;
+
+import javax.validation.constraints.NotNull;
 
 /**
  * 値オブジェクト用の基底クラス
@@ -17,7 +20,7 @@ public abstract class ValueObject<T extends Comparable<T>> {
      * {@code {"user_id": 1}}のようにシリアライズされます
      */
     @JsonValue
-    private final T value;
+    protected final T value;
 
     /**
      * {@link JsonCreator}を付与することによって、例えば
@@ -29,8 +32,26 @@ public abstract class ValueObject<T extends Comparable<T>> {
         this.value = value;
     }
 
+    /**
+     * 値を取得します
+     * バリデーションを変更したい場合は、
+     * このメソッドを@Overrideして異なるバリデーション用アノテーションを付与してください
+     *
+     * @return
+     */
+    @NotNull
     public T getValue() {
         return value;
+    }
+
+    /**
+     * 値が不正かどうか判定します
+     * より詳細な判定が必要な場合は@Overrideして変更してください
+     *
+     * @return
+     */
+    public boolean isInvalid() {
+        return ObjectUtils.isEmpty(value);
     }
 
 }

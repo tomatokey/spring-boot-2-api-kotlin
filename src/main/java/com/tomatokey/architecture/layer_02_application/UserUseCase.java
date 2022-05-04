@@ -1,9 +1,9 @@
 package com.tomatokey.architecture.layer_02_application;
 
-import com.tomatokey.architecture.layer_03_domain.user.User;
+import com.tomatokey.architecture.layer_03_domain.user.UserEntity;
 import com.tomatokey.architecture.layer_03_domain.user.UserId;
 import com.tomatokey.architecture.layer_03_domain.user.UserRepository;
-import com.tomatokey.architecture.layer_03_domain.userrole.UserRole;
+import com.tomatokey.architecture.layer_03_domain.userrole.UserRoleEntity;
 import com.tomatokey.architecture.layer_03_domain.userrole.UserRoleRepository;
 import com.tomatokey.architecture.layer_03_domain.userrole.UserRoleType;
 import com.tomatokey.framework.configuration.jdbc.annotation.TransactionalForUpd;
@@ -24,26 +24,26 @@ public class UserUseCase {
     private final static List<UserRoleType> DEFAULT_USER_ROLES = List.of(UserRoleType.VIEWER);
 
     @TransactionalForUpd
-    public User create(final User user) {
-        final User createdUser = userRepository.save(user);
+    public UserEntity create(final UserEntity user) {
+        final UserEntity createdUser = userRepository.save(user);
 
-        final Iterable<UserRole> userRoles = userRoleRepository.findAllByUserId(createdUser.getUserId());
+        final Iterable<UserRoleEntity> userRoles = userRoleRepository.findAllByUserId(createdUser.getUserId());
         userRoles.forEach(userRole -> {
             userRoleRepository.delete(userRole.getPk());
         });
 
         for (UserRoleType userRoleType: DEFAULT_USER_ROLES) {
-            userRoleRepository.save(new UserRole(createdUser.getUserId(), userRoleType));
+            userRoleRepository.save(new UserRoleEntity(createdUser.getUserId(), userRoleType));
         }
 
         return createdUser;
     }
 
-    public List<User> findAll() {
+    public List<UserEntity> findAll() {
         return CollectionUtils.toList(userRepository.findAll());
     }
 
-    public Optional<User> findById(UserId userId) {
+    public Optional<UserEntity> findById(UserId userId) {
         return userRepository.findById(userId);
     }
 

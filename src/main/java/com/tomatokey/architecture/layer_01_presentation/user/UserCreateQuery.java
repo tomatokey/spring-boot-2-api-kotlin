@@ -13,8 +13,6 @@ import javax.validation.constraints.NotNull;
 @Getter
 public class UserCreateQuery implements Query {
 
-    private UserId userId;
-
     @NotNull
     @Valid
     private UserName userName;

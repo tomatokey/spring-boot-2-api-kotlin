@@ -1,7 +1,7 @@
 package com.tomatokey.architecture.layer_01_presentation.user;
 
 import com.tomatokey.architecture.layer_02_application.UserUseCase;
-import com.tomatokey.architecture.layer_03_domain.user.User;
+import com.tomatokey.architecture.layer_03_domain.user.UserEntity;
 import com.tomatokey.architecture.layer_03_domain.user.UserId;
 import lombok.AllArgsConstructor;
 import org.springframework.validation.annotation.Validated;
@@ -20,14 +20,14 @@ public class UserController {
 
     @PostMapping
     public UserResponse create(@RequestBody @Validated UserCreateQuery query) {
-        final User userInput = User.of(query.getUserName());
-        final User userOutput = userUseCase.create(userInput);
+        final UserEntity userInput = UserEntity.of(query.getUserName());
+        final UserEntity userOutput = userUseCase.create(userInput);
         return UserResponse.of(userOutput);
     }
 
     @GetMapping
     public List<UserResponse> findAll() {
-        final List<User> users = userUseCase.findAll();
+        final List<UserEntity> users = userUseCase.findAll();
         return users.stream()
                 .map(UserResponse::of)
                 .collect(Collectors.toList());

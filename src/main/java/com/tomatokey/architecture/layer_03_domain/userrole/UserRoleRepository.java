@@ -8,7 +8,7 @@ import com.tomatokey.architecture.layer_03_domain.user.UserId;
  * @param <T>
  * @param <PK>
  */
-public interface UserRoleRepository<T extends UserRole, PK extends UserRolePk> {
+public interface UserRoleRepository<T extends UserRoleEntity, PK extends UserRolePk> {
 
     T save(T entity);
     Iterable<T> findAllByUserId(UserId userId);

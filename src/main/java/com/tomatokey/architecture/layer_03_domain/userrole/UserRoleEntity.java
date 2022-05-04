@@ -1,7 +1,7 @@
 package com.tomatokey.architecture.layer_03_domain.userrole;
 
 import com.tomatokey.architecture.layer_03_domain.Entity;
-import com.tomatokey.architecture.layer_03_domain.user.User;
+import com.tomatokey.architecture.layer_03_domain.user.UserEntity;
 import com.tomatokey.architecture.layer_03_domain.user.UserId;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -15,12 +15,12 @@ import org.springframework.data.relational.core.mapping.Table;
 @Getter
 @ToString
 @Table("user_role_t")
-public class UserRole extends Entity {
+public class UserRoleEntity extends Entity {
 
     public static final String COLUMN_NAME_USER_ROLE_TYPE = "role_type";
 
     @Id
-    @Column(User.COLUMN_NAME_USER_ID)
+    @Column(UserEntity.COLUMN_NAME_USER_ID)
     private UserId userId;
 
     @Id
