@@ -4,7 +4,7 @@ import java.util.Objects;
 
 public class MultiDataSourceContextHolder {
 
-    private static ThreadLocal<DataSourceType> contextHolder = new ThreadLocal<>();
+    private static final ThreadLocal<DataSourceType> contextHolder = new ThreadLocal<>();
 
     public static void setDataSourceType(DataSourceType dataSourceType) {
         Objects.requireNonNull(dataSourceType);

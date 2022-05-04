@@ -1,9 +1,9 @@
 package com.tomatokey.framework.configuration.jdbc;
 
 import com.tomatokey.framework.configuration.jdbc.converter.UserIdConverter;
+import com.tomatokey.framework.configuration.jdbc.converter.UserNameConverter;
 import com.tomatokey.framework.configuration.jdbc.datasource.DataSourceType;
 import com.tomatokey.framework.configuration.jdbc.datasource.DynamicRoutingDataSource;
-import com.tomatokey.framework.configuration.jdbc.converter.UserNameConverter;
 import com.zaxxer.hikari.HikariDataSource;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.boot.jdbc.DataSourceBuilder;

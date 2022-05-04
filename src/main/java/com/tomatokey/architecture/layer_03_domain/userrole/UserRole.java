@@ -1,8 +1,8 @@
 package com.tomatokey.architecture.layer_03_domain.userrole;
 
-import com.tomatokey.architecture.layer_03_domain.user.UserId;
 import com.tomatokey.architecture.layer_03_domain.Entity;
 import com.tomatokey.architecture.layer_03_domain.user.User;
+import com.tomatokey.architecture.layer_03_domain.user.UserId;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.ToString;

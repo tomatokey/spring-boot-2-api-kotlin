@@ -12,7 +12,7 @@ public class UserName implements ValueObject<String> {
 
     @NotBlank
     @JsonValue
-    private String value;
+    private final String value;
 
     @JsonCreator(mode = JsonCreator.Mode.DELEGATING)
     public UserName(String value) {

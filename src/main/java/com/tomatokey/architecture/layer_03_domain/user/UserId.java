@@ -10,7 +10,7 @@ import lombok.Getter;
 public class UserId implements ValueObject<Integer> {
     
     @JsonValue
-    private Integer value;
+    private final Integer value;
 
     @JsonCreator(mode = JsonCreator.Mode.DELEGATING)
     public UserId(Integer value) {
