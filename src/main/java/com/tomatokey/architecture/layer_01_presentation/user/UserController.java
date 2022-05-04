@@ -4,9 +4,11 @@ import com.tomatokey.architecture.layer_02_application.UserUseCase;
 import com.tomatokey.architecture.layer_03_domain.user.UserEntity;
 import com.tomatokey.architecture.layer_03_domain.user.UserId;
 import lombok.AllArgsConstructor;
+import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.constraints.NotNull;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -34,8 +36,8 @@ public class UserController {
     }
 
     @GetMapping(path = "{userId}")
-    public Optional<UserResponse> findById(@PathVariable("userId") UserId userId) {
-        return userUseCase.findById(userId).map(UserResponse::of);
+    public ResponseEntity<UserResponse> findById(@PathVariable("userId") UserId userId) {
+        return ResponseEntity.of(userUseCase.findById(userId).map(UserResponse::of));
     }
 
 }
