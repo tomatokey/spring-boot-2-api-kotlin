@@ -12,7 +12,6 @@ import java.util.Set;
 /**
  * UserId(値オブジェクト)用のコンバーター
  * Jdbcの変換には{@link JdbcConfiguration}にこのクラスを設定する必要があります
- * Jacksonの変換には{@link UserId}に@JsonValueと@JsonCreatorを設定する必要があります
  */
 public class UserIdConverter implements ConditionalGenericConverter {
 
