@@ -3,13 +3,11 @@ package com.tomatokey.framework.configuration.jdbc.converter;
 import com.tomatokey.architecture.layer_03_domain.user.UserName;
 import org.springframework.core.convert.TypeDescriptor;
 import org.springframework.core.convert.converter.ConditionalGenericConverter;
-import org.springframework.stereotype.Component;
 
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-@Component
 public class UserNameConverter implements ConditionalGenericConverter {
 
     @Override

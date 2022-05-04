@@ -4,7 +4,6 @@ import com.tomatokey.architecture.layer_03_domain.user.UserId;
 import com.tomatokey.framework.configuration.jdbc.JdbcConfiguration;
 import org.springframework.core.convert.TypeDescriptor;
 import org.springframework.core.convert.converter.ConditionalGenericConverter;
-import org.springframework.stereotype.Component;
 
 import java.util.HashSet;
 import java.util.List;
@@ -15,7 +14,6 @@ import java.util.Set;
  * Jdbcの変換には{@link JdbcConfiguration}にこのクラスを設定する必要があります
  * Jacksonの変換には{@link UserId}に@JsonValueと@JsonCreatorを設定する必要があります
  */
-@Component
 public class UserIdConverter implements ConditionalGenericConverter {
 
     @Override
