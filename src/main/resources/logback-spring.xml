@@ -22,9 +22,9 @@
     </appender>
 
     <appender name="FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
-        <file>${LOG_DIR}/${SPRING_PROFILE}/${FILE_NAME}</file>
+        <file>${LOG_DIR}/${FILE_NAME}</file>
         <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
-            <fileNamePattern>${LOG_DIR}/${SPRING_PROFILE}/${FILE_NAME}.%d{yyyy-MM-dd}.log.tar.gz</fileNamePattern>
+            <fileNamePattern>${LOG_DIR}/${FILE_NAME}.%d{yyyy-MM-dd}.log.tar.gz</fileNamePattern>
             <maxHistory>7</maxHistory>
         </rollingPolicy>
         <encoder>
