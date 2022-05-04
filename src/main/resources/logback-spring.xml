@@ -11,8 +11,8 @@
 
     <springProfile name="production">
         <property name="SPRING_PROFILE" value="production" />
-        <property name="LOG_DIR" value="logs" />
-        <property name="LOG_LEVEL" value="INFO" />
+        <property name="LOG_DIR" value="/var/log/tomcat" />
+        <property name="LOG_LEVEL" value="ERROR" />
     </springProfile>
 
     <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
