@@ -17,6 +17,8 @@ import javax.validation.constraints.NotNull;
 public abstract class ValueObject<T extends Comparable<T>> {
 
     /**
+     * 子クラスで指定した型の値
+     *
      * {@link JsonValue}を付与することによって、例えば
      * {@code {"user_id": {value: 1}}}だったものが
      * {@code {"user_id": 1}}のようにシリアライズされます
@@ -25,6 +27,8 @@ public abstract class ValueObject<T extends Comparable<T>> {
     protected final T value;
 
     /**
+     * コンストラクタ
+     *
      * {@link JsonCreator}を付与することによって、例えば
      * {@code {"user_id": 1}}のJsonが
      * {@link UserId}オブジェクトにデシリアライズされます
@@ -36,6 +40,7 @@ public abstract class ValueObject<T extends Comparable<T>> {
 
     /**
      * 値を取得します
+     *
      * {@link NotNull}バリデーションを変更したい場合は、
      * このメソッドを@Overrideして異なるバリデーション用アノテーションを付与してください
      *
@@ -48,6 +53,7 @@ public abstract class ValueObject<T extends Comparable<T>> {
 
     /**
      * 値が不正かどうか判定します
+     *
      * より詳細な判定が必要な場合は@Overrideして変更してください
      *
      * @return
