@@ -1,22 +1,26 @@
-package com.tomatokey.framework.configuration.jdbc.converter;
+package com.tomatokey.framework.configuration.mvc.converter;
 
-import com.tomatokey.architecture.layer_03_domain.user.UserName;
+import com.tomatokey.architecture.layer_03_domain.user.UserId;
 import org.springframework.core.convert.TypeDescriptor;
 import org.springframework.core.convert.converter.GenericConverter;
 import org.springframework.stereotype.Component;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
+/**
+ * {@link RequestParam}や{@link PathVariable}用のコンバーター
+ */
 @Component
-public class UserNameConverter implements GenericConverter {
+public class MvcParameterConverter implements GenericConverter {
 
     @Override
     public Set<ConvertiblePair> getConvertibleTypes() {
         final ConvertiblePair[] pairs = new ConvertiblePair[] {
-                new ConvertiblePair(String.class, UserName.class),
-                new ConvertiblePair(UserName.class, String.class)
+                new ConvertiblePair(String.class, UserId.class),
         };
         return new HashSet(List.of(pairs));
     }
@@ -24,10 +28,9 @@ public class UserNameConverter implements GenericConverter {
     @Override
     public Object convert(Object source, TypeDescriptor sourceType, TypeDescriptor targetType) {
         if (source instanceof String o) {
-            return new UserName(o);
-        }
-        if (source instanceof UserName o) {
-            return o.getValue();
+            if (targetType.getType() == UserId.class) {
+                return new UserId(Integer.parseInt(o));
+            }
         }
 
         return source;

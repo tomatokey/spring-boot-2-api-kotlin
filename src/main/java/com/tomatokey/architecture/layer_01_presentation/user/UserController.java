@@ -17,7 +17,7 @@ import java.util.stream.Collectors;
 
 @AllArgsConstructor
 @RestController
-@RequestMapping(path = "users")
+@RequestMapping( "users")
 public class UserController {
 
     private final UserUseCase userUseCase;
@@ -43,11 +43,16 @@ public class UserController {
     @GetMapping("findByToken")
     public ResponseEntity<UserResponse> findByToken() {
         final AuthUser authUser = authService.getAuthUser();
-        return ResponseEntity.of(userUseCase.findById(authUser.getUserId()).map(UserResponse::of));
+        return ResponseEntity.of(userUseCase.findById(authUser.userId()).map(UserResponse::of));
     }
 
-    @GetMapping(path = "{userId}")
-    public ResponseEntity<UserResponse> findById(@PathVariable("userId") UserId userId) {
+    @GetMapping("{userId}")
+    public ResponseEntity<UserResponse> findByPathId(@PathVariable("userId") UserId userId) {
+        return ResponseEntity.of(userUseCase.findById(userId).map(UserResponse::of));
+    }
+
+    @GetMapping( "findById")
+    public ResponseEntity<UserResponse> findById(@RequestParam("userId") UserId userId) {
         return ResponseEntity.of(userUseCase.findById(userId).map(UserResponse::of));
     }
 

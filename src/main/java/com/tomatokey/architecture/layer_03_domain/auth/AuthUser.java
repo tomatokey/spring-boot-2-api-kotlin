@@ -2,20 +2,16 @@ package com.tomatokey.architecture.layer_03_domain.auth;
 
 import com.tomatokey.architecture.layer_03_domain.user.UserId;
 import com.tomatokey.architecture.layer_03_domain.userrole.UserRoleType;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.GrantedAuthority;
 
 import java.util.Collection;
 import java.util.List;
 
-@AllArgsConstructor
-@Getter
-public final class AuthUser implements Authentication {
-
-    private final UserId userId;
-    private final List<UserRoleType> userRoleTypes;
+public record AuthUser(
+        UserId userId,
+        List<UserRoleType> userRoleTypes
+) implements Authentication {
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {

@@ -88,7 +88,7 @@ public class AuthorizationHandlerInterceptor implements HandlerInterceptor {
         }
 
         for (UserRoleType role: roles) {
-            if (!authUser.getUserRoleTypes().contains(role)) {
+            if (!authUser.userRoleTypes().contains(role)) {
                 throw new ResponseStatusException(HttpStatus.FORBIDDEN);
             }
         }
