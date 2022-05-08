@@ -1,7 +1,6 @@
 package com.tomatokey.framework.configuration.jdbc;
 
-import com.tomatokey.framework.configuration.jdbc.converter.UserIdConverter;
-import com.tomatokey.framework.configuration.jdbc.converter.UserNameConverter;
+import com.tomatokey.framework.configuration.jdbc.converter.JdbcValueObjectConverter;
 import com.tomatokey.framework.configuration.jdbc.datasource.DataSourceType;
 import com.tomatokey.framework.configuration.jdbc.datasource.DynamicRoutingDataSource;
 import com.zaxxer.hikari.HikariDataSource;
@@ -29,8 +28,7 @@ public class JdbcConfiguration extends AbstractJdbcConfiguration {
     @Override
     protected List<?> userConverters() {
         return Arrays.asList(
-                new UserIdConverter(),
-                new UserNameConverter()
+                new JdbcValueObjectConverter()
         );
     }
 
