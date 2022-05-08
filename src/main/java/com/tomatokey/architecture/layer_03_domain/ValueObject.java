@@ -32,6 +32,7 @@ public abstract class ValueObject<T extends Comparable<T>> {
      * {@link JsonCreator}を付与することによって、例えば
      * {@code {"user_id": 1}}のJsonが
      * {@link UserId}オブジェクトにデシリアライズされます
+     * {@link JsonCreator}をValueObjectを継承したクラスに付与する必要はありません
      */
     @JsonCreator
     protected ValueObject(T value) {
