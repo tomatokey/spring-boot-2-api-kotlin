@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
 import com.tomatokey.architecture.layer_03_domain.user.UserId;
 import com.tomatokey.framework.utils.ObjectUtils;
+import lombok.EqualsAndHashCode;
 
 import javax.validation.constraints.NotNull;
 
@@ -12,6 +13,7 @@ import javax.validation.constraints.NotNull;
  *
  * @param <T> value
  */
+@EqualsAndHashCode
 public abstract class ValueObject<T extends Comparable<T>> {
 
     /**
