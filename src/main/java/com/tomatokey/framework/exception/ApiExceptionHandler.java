@@ -10,6 +10,7 @@ import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 import org.springframework.web.context.request.WebRequest;
+import org.springframework.web.server.ResponseStatusException;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
 
 import java.util.List;
@@ -61,7 +62,19 @@ public class ApiExceptionHandler extends ResponseEntityExceptionHandler {
                 "パラメータが不正です",
                 errors
         );
-        return handleExceptionInternal(ex, errorResponse, new HttpHeaders(), status, request);
+        return handleExceptionInternal(ex, errorResponse, HttpHeaders.EMPTY, status, request);
+    }
+
+    /**
+     * {@link ResponseStatusException}をthrowした場合のハンドリングをします
+     *
+     * @param ex
+     * @param request
+     * @return
+     */
+    @ExceptionHandler(ResponseStatusException.class)
+    public ResponseEntity<Object> handleResponseStatusException(ResponseStatusException ex, WebRequest request) {
+        return handleExceptionInternal(ex, null, ex.getResponseHeaders(), ex.getStatus(), request);
     }
 
     /**
@@ -73,7 +86,7 @@ public class ApiExceptionHandler extends ResponseEntityExceptionHandler {
      */
     @ExceptionHandler(Exception.class)
     public ResponseEntity<Object> handleUnexpectedException(Exception ex, WebRequest request) {
-        return handleExceptionInternal(ex, null, new HttpHeaders(), HttpStatus.INTERNAL_SERVER_ERROR, request);
+        return handleExceptionInternal(ex, null, HttpHeaders.EMPTY, HttpStatus.INTERNAL_SERVER_ERROR, request);
     }
 
 }

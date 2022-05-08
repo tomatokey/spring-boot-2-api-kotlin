@@ -1,8 +1,15 @@
 package com.tomatokey.architecture.layer_03_domain.userrole;
 
-public enum UserRoleType {
+import org.springframework.security.core.GrantedAuthority;
+
+public enum UserRoleType implements GrantedAuthority {
     ADMIN,
     EDITOR,
     AUTHOR,
-    VIEWER
+    VIEWER;
+
+    @Override
+    public String getAuthority() {
+        return name();
+    }
 }
