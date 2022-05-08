@@ -36,7 +36,7 @@ public abstract class ValueObject<T extends Comparable<T>> {
 
     /**
      * 値を取得します
-     * バリデーションを変更したい場合は、
+     * {@link NotNull}バリデーションを変更したい場合は、
      * このメソッドを@Overrideして異なるバリデーション用アノテーションを付与してください
      *
      * @return
