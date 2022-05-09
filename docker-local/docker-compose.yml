@@ -12,7 +12,7 @@ services:
       - ./mysql/conf/my.cnf:/etc/mysql/conf.d/my.cnf
     tty: true
     environment:
-      TZ: 'Asia/Tokyo'
+      TZ: '+9:00'
       MYSQL_DATABASE: local_db
       MYSQL_ROOT_USER: 'root'
       MYSQL_ROOT_PASSWORD: 'password'
