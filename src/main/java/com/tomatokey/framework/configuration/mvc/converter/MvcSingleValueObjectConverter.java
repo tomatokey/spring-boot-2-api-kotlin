@@ -1,6 +1,6 @@
 package com.tomatokey.framework.configuration.mvc.converter;
 
-import com.tomatokey.architecture.layer_03_domain.ValueObject;
+import com.tomatokey.architecture.layer_03_domain.SingleValueObject;
 import lombok.SneakyThrows;
 import org.springframework.core.convert.TypeDescriptor;
 import org.springframework.core.convert.converter.GenericConverter;
@@ -19,13 +19,13 @@ import java.util.Set;
  * {@link RequestParam}や{@link PathVariable}で使用するためのコンバーター
  */
 @Component
-public class MvcValueObjectConverter implements GenericConverter {
+public class MvcSingleValueObjectConverter implements GenericConverter {
 
     @Override
     public Set<ConvertiblePair> getConvertibleTypes() {
         final ConvertiblePair[] pairs = new ConvertiblePair[] {
-                new ConvertiblePair(String.class, ValueObject.class),
-                new ConvertiblePair(Number.class, ValueObject.class),
+                new ConvertiblePair(String.class, SingleValueObject.class),
+                new ConvertiblePair(Number.class, SingleValueObject.class),
         };
         return new HashSet(List.of(pairs));
     }
@@ -33,7 +33,7 @@ public class MvcValueObjectConverter implements GenericConverter {
     @SneakyThrows
     @Override
     public Object convert(Object source, TypeDescriptor sourceType, TypeDescriptor targetType) {
-        if (source instanceof String o && targetType.getType().getSuperclass() == ValueObject.class) {
+        if (source instanceof String o && targetType.getType().getSuperclass() == SingleValueObject.class) {
             final Type genericType = ((ParameterizedType) targetType.getType().getGenericSuperclass()).getActualTypeArguments()[0];
             if (genericType == String.class) {
                 return targetType.getType().getDeclaredConstructor(String.class).newInstance(o);

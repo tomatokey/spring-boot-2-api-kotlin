@@ -9,12 +9,12 @@ import lombok.EqualsAndHashCode;
 import javax.validation.constraints.NotNull;
 
 /**
- * 値オブジェクト用の基底クラス
+ * 値が1つだけのバリューオブジェクト用基底クラス
  *
  * @param <T> value
  */
 @EqualsAndHashCode
-public abstract class ValueObject<T extends Comparable<T>> {
+public abstract class SingleValueObject<T extends Comparable<T>> {
 
     /**
      * 子クラスで指定した型の値
@@ -35,7 +35,7 @@ public abstract class ValueObject<T extends Comparable<T>> {
      * {@link JsonCreator}をValueObjectを継承したクラスに付与する必要はありません
      */
     @JsonCreator
-    protected ValueObject(T value) {
+    protected SingleValueObject(T value) {
         this.value = value;
     }
 
