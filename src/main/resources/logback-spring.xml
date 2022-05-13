@@ -4,20 +4,18 @@
     <property name="FORMAT" value="[%-5level] %d{yyyy-MM-dd HH:mm:ss.SSS} %logger{36} - %msg%n" />
 
     <springProfile name="default">
-        <property name="SPRING_PROFILE" value="local" />
         <property name="LOG_DIR" value="logs" />
         <property name="LOG_LEVEL" value="INFO" />
     </springProfile>
 
     <springProfile name="production">
-        <property name="SPRING_PROFILE" value="production" />
         <property name="LOG_DIR" value="/var/log/tomcat" />
         <property name="LOG_LEVEL" value="ERROR" />
     </springProfile>
 
     <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
         <encoder>
-            <pattern>[${SPRING_PROFILE}]${FORMAT}</pattern>
+            <pattern>${FORMAT}</pattern>
         </encoder>
     </appender>
 
@@ -28,7 +26,7 @@
             <maxHistory>7</maxHistory>
         </rollingPolicy>
         <encoder>
-            <pattern>[${SPRING_PROFILE}]${FORMAT}</pattern>
+            <pattern>${FORMAT}</pattern>
         </encoder>
     </appender>
 
