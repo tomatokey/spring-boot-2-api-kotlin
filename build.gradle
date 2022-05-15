@@ -41,6 +41,24 @@ dependencies {
 	developmentOnly 'org.springframework.boot:spring-boot-devtools'
 }
 
-tasks.named('test') {
+task dockerComposeUp (type: Exec) {
+	commandLine 'docker-compose','-f','docker-local/docker-compose.yml','up','-d'
+	doLast {
+		// dockerが起動するまでスリープを設定
+		Thread.sleep(5 * 1000)
+	}
+}
+
+task dockerComposeDown (type: Exec) {
+	commandLine 'docker-compose', '-f', 'docker-local/docker-compose.yml', 'down', '--remove-orphans', '--volumes'
+}
+
+bootRun {
+	dependsOn(dockerComposeDown, dockerComposeUp)
+}
+
+test {
 	useJUnitPlatform()
+	dependsOn(dockerComposeUp)
+	finalizedBy(dockerComposeDown)
 }
