@@ -6,10 +6,13 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 
-@Service
-public class AuthService {
+import java.util.function.Supplier;
 
-    public AuthUser getAuthUser() {
+@Service
+public class GetAuthUserService implements Supplier<AuthUser> {
+
+    @Override
+    public AuthUser get() {
         final Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         if (auth instanceof AuthUser authUser) {
             return authUser;
