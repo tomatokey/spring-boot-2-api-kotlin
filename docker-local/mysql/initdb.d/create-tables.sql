@@ -1,8 +1,3 @@
-CREATE USER 'user_upd'@'%' IDENTIFIED BY 'user_upd_password';
-GRANT ALL ON local_db.* TO 'user_upd'@'%';
-CREATE USER 'user_ref'@'%' IDENTIFIED BY 'user_ref_password';
-GRANT SELECT ON local_db.* TO 'user_ref'@'%';
-
 drop table if exists user_t;
 create table if not exists user_t(
     `user_id` int not null auto_increment,
