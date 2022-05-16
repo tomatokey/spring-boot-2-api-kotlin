@@ -3,7 +3,7 @@
     <property name="FILE_NAME" value="contents.log" />
     <property name="FORMAT" value="[%-5level] %d{yyyy-MM-dd HH:mm:ss.SSS} %logger{36} - %msg%n" />
 
-    <springProfile name="default">
+    <springProfile name="local">
         <property name="LOG_DIR" value="logs" />
         <property name="LOG_LEVEL" value="INFO" />
     </springProfile>

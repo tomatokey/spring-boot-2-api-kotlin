@@ -41,6 +41,9 @@ dependencies {
 	developmentOnly 'org.springframework.boot:spring-boot-devtools'
 }
 
+/**
+ * ローカル環境用のdockerを起動
+ */
 task dockerComposeUp (type: Exec) {
 	commandLine 'docker-compose','-f','docker-local/docker-compose.yml','up','-d'
 	doLast {
@@ -49,14 +52,24 @@ task dockerComposeUp (type: Exec) {
 	}
 }
 
+/**
+ * ローカル環境用のdockerを停止
+ */
 task dockerComposeDown (type: Exec) {
 	commandLine 'docker-compose', '-f', 'docker-local/docker-compose.yml', 'down', '--remove-orphans', '--volumes'
 }
 
+/**
+ * ローカル環境の起動処理
+ */
 bootRun {
+	systemProperty("spring.profiles.active", "local")
 	dependsOn(dockerComposeDown, dockerComposeUp)
 }
 
+/**
+ * テストの実行処理
+ */
 test {
 	useJUnitPlatform()
 	dependsOn(dockerComposeUp)
