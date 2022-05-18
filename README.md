@@ -16,19 +16,36 @@
   - Settings > Editor > General > Console > `Default Encoding` をUTF-8にする
   - `C:¥Program Files¥JetBrains¥IntelliJ Idea xx.x.x¥bin`の中にある`idea64.exe.vmoptions`ファイルに`-Dfile.encoding=UTF-8`を追記する。(Intellijを再起動する)
 
-### Dockerの起動
-ローカル環境用にMySQLサーバーを立ち上げます。  
-事前に [DockerDesktop](https://docs.docker.com/get-docker/) のインストールと起動が必要となります。  
-もしDockerの起動がうまく行かない場合は、mysqlをローカル環境に独自に作成してください。
-
-#### Windows10、MacOSXの場合
-```bash
-$ cd docker-local
-$ docker-compose up -d
-```
+### Dockerデーモンの起動
+ローカル環境用にMySQLサーバーを立ち上げる必要があるため、  
+事前に [DockerDesktop](https://docs.docker.com/get-docker/) のインストールと起動を行ってください。  
+その後、アプリケーションの起動コマンドを実行してください。
 
 ### アプリケーションの起動
-- 「MyApplication」クラスを右クリック > 実行 'MyApplication'
+bootRunコマンドの実行時にdockerの起動も行っています。  
+詳しくは build.gradle を参照してください。  
+デバッグモードを使用したい場合は、Terminalからではなく、  
+IntellijならGradleメニューから実行すると簡単です。
+```bash
+$ ./gradlew :bootRun
+```
+
+### リリース手順
+tomcat組み込みの単体で起動したい場合や、  
+tomcatを別途用意する場合のどちらでも起動可能なwarの生成を行います。
+```bash
+$ ./gradlew :bootWar
+```
+上記のコマンドを実行すると、build/libs配下にwarが生成されます。  
+組み込みのtomcat(9.0.60)を用いて起動する場合は、以下のコマンドを実行してください。
+```bash
+$ java -jar build/libs/spring-boot-2-api.war --spring.profiles.active=production
+```
+組み込みのtomcatを使わない場合など、  
+プロファイルの選択を環境変数に設定する場合は以下のようにしてください。  
+```bash
+$ export SPRING_PROFILES_ACTIVE=production
+```
 
 ### IF情報
 [SwaggerUI](http://localhost:8080/swagger-ui/index.html?configUrl=/v3/api-docs/swagger-config) にてIF情報を確認することができます。  
