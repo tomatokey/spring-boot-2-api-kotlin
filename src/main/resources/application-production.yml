@@ -1,27 +1,4 @@
-spring:
-  datasource:
-    upd:
-      driverClassName: com.mysql.cj.jdbc.Driver
-      jdbcUrl: jdbc:mysql://localhost:3306/local_db?useSSL=false&allowPublicKeyRetrieval=true&socketTimeout=7000&characterEncoding=utf8
-      username: user_upd
-      password: user_upd_password
-      autoCommit: false
-      connectionTimeout: 2000
-      # minimumIdleとmaximumPoolSizeを同じ値にしない場合はidleTimeoutを指定してください
-#      idleTimeout: 10000
-      maxLifetime: 60000
-      minimumIdle: 2
-      maximumPoolSize: 2
-    ref:
-      driverClassName: com.mysql.cj.jdbc.Driver
-      jdbcUrl: jdbc:mysql://localhost:3306/local_db?useSSL=false&allowPublicKeyRetrieval=true&socketTimeout=7000&characterEncoding=utf8
-      username: user_ref
-      password: user_ref_password
-      autoCommit: false
-      connectionTimeout: 2000
-      # minimumIdleとmaximumPoolSizeを同じ値にしない場合はidleTimeoutを指定してください
-#      idleTimeout: 10000
-      maxLifetime: 60000
-      minimumIdle: 2
-      maximumPoolSize: 2
-      readOnly: true
+springdoc:
+  swagger-ui:
+    enabled: false
+    disable-swagger-default-url: true

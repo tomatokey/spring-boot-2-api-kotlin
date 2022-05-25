@@ -25,3 +25,7 @@ spring:
       minimumIdle: 2
       maximumPoolSize: 2
       readOnly: true
+springdoc:
+  swagger-ui:
+    enabled: true
+    disable-swagger-default-url: true
