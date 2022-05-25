@@ -31,7 +31,7 @@
     </appender>
 
     <root level="${LOG_LEVEL}">
-        <springProfile name="default">
+        <springProfile name="local">
             <appender-ref ref="STDOUT" />
         </springProfile>
         <appender-ref ref="FILE" />
