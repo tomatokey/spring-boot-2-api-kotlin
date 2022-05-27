@@ -16,19 +16,24 @@
   - Settings > Editor > General > Console > `Default Encoding` をUTF-8にする
   - `C:¥Program Files¥JetBrains¥IntelliJ Idea xx.x.x¥bin`の中にある`idea64.exe.vmoptions`ファイルに`-Dfile.encoding=UTF-8`を追記する。(Intellijを再起動する)
 
-### Dockerデーモンの起動
+### Dockerの起動
+#### Dockerデーモンの起動
 ローカル環境用にMySQLサーバーを立ち上げる必要があるため、  
 事前に [DockerDesktop](https://docs.docker.com/get-docker/) のインストールと起動を行ってください。  
-その後、アプリケーションの起動コマンドを実行してください。
+
+#### Dockerの起動
+以下のコマンドでDockerを起動してください。
+```bash
+$ ./gradlew :dockerComposeUp
+```
 
 ### アプリケーションの起動
-bootRunコマンドの実行時にdockerの起動も行っています。  
-詳しくは build.gradle を参照してください。  
 デバッグモードを使用したい場合は、Terminalからではなく、  
 IntellijならGradleメニューから実行すると簡単です。
 ```bash
 $ ./gradlew :bootRun
 ```
+※事前にDockerを起動する必要があります
 
 ### リリース手順
 tomcat組み込みの単体で起動したい場合や、  

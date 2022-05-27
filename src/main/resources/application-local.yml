@@ -2,7 +2,7 @@ spring:
   datasource:
     upd:
       driverClassName: com.mysql.cj.jdbc.Driver
-      jdbcUrl: jdbc:mysql://localhost:3306/local_db?useSSL=false&allowPublicKeyRetrieval=true&socketTimeout=7000&characterEncoding=utf8
+      jdbcUrl: jdbc:mysql://localhost:13306/local_db?useSSL=false&allowPublicKeyRetrieval=true&socketTimeout=7000&characterEncoding=utf8
       username: user_upd
       password: user_upd_password
       autoCommit: false
@@ -14,7 +14,7 @@ spring:
       maximumPoolSize: 2
     ref:
       driverClassName: com.mysql.cj.jdbc.Driver
-      jdbcUrl: jdbc:mysql://localhost:3306/local_db?useSSL=false&allowPublicKeyRetrieval=true&socketTimeout=7000&characterEncoding=utf8
+      jdbcUrl: jdbc:mysql://localhost:13306/local_db?useSSL=false&allowPublicKeyRetrieval=true&socketTimeout=7000&characterEncoding=utf8
       username: user_ref
       password: user_ref_password
       autoCommit: false
