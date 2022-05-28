@@ -29,3 +29,5 @@ springdoc:
   swagger-ui:
     enabled: true
     disable-swagger-default-url: true
+server:
+  port: 8080
