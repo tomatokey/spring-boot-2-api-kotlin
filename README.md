@@ -41,7 +41,7 @@ tomcat組み込みの単体で起動したい場合は以下のコマンドでwa
 ```bash
 $ ./gradlew bootWar
 ```
-組み込みのtomcat(9.0.60)を用いて起動する場合は、以下のコマンドを実行してください。
+組み込みのtomcatを用いて起動する場合は、以下のコマンドを実行してください。
 ```bash
 $ java -jar build/libs/spring-boot-2-api.war --spring.profiles.active=production
 ```
