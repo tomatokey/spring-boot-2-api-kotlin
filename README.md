@@ -24,30 +24,32 @@
 #### Dockerの起動
 以下のコマンドでDockerを起動してください。
 ```bash
-$ ./gradlew :dockerComposeUp
+$ ./gradlew dockerComposeUp
 ```
 
 ### アプリケーションの起動
 デバッグモードを使用したい場合は、Terminalからではなく、  
 IntellijならGradleメニューから実行すると簡単です。
 ```bash
-$ ./gradlew :bootRun
+$ ./gradlew bootRun
 ```
 ※事前にDockerを起動する必要があります
 
 ### リリース手順
-tomcat組み込みの単体で起動したい場合や、  
-tomcatを別途用意する場合のどちらでも起動可能なwarの生成を行います。  
+tomcat組み込みの単体で起動したい場合は以下のコマンドでwarを生成します。  
 下記のコマンドを実行すると、build/libs配下にwarが生成されます。
 ```bash
-$ ./gradlew :bootWar
+$ ./gradlew bootWar
 ```
 組み込みのtomcat(9.0.60)を用いて起動する場合は、以下のコマンドを実行してください。
 ```bash
 $ java -jar build/libs/spring-boot-2-api.war --spring.profiles.active=production
 ```
-組み込みのtomcatを使わない場合など、  
-プロファイルの選択を環境変数に設定する場合は以下のようにしてください。  
+warにtomcatを組み込まないで生成したい場合は以下のコマンドを実行してください。
+```bash
+$ ./gradlew war
+```
+プロファイルの指定方法は、以下のように環境変数に設定することも可能です。  
 ```bash
 $ export SPRING_PROFILES_ACTIVE=production
 ```

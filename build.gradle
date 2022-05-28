@@ -10,6 +10,10 @@ group = 'com.prototype'
 version = '0.0.1-SNAPSHOT'
 sourceCompatibility = '17'
 
+ext {
+	archiveFileName = "spring-boot-2-api.war"
+}
+
 configurations {
 	compileOnly {
 		extendsFrom annotationProcessor
@@ -50,7 +54,7 @@ dependencies {
 task dockerComposeUp (type: Exec) {
 	commandLine 'docker-compose','-f','docker-local/docker-compose.yml','up','-d'
 	doLast {
-		// dockerが起動するまでスリープを設定
+		// dockerが起動するまでスリープを設定(5秒は例)
 		Thread.sleep(5 * 1000)
 	}
 }
@@ -64,18 +68,26 @@ task dockerComposeDown (type: Exec) {
 
 /**
  * ローカル環境の起動処理
+ * 組み込みのtomcatで起動する場合に使用します
  */
 bootRun {
 	systemProperty("spring.profiles.active", "local")
-//	dependsOn(dockerComposeUp) 
 }
 
 /**
- * war生成用コマンド
- * build/libs配下にwarは出力されます
+ * tomcat内臓のwar生成用コマンド
+ * build/libs配下にwarが出力されます
  */
 bootWar {
-	archiveFileName = "spring-boot-2-api.war"
+	archiveFileName = rootProject.ext.archiveFileName
+}
+
+/**
+ * tomcatを含まないプレーンなwar生成用コマンド
+ * build/libs配下にwarが出力されます
+ */
+war {
+	archiveFileName = rootProject.ext.archiveFileName
 }
 
 /**
