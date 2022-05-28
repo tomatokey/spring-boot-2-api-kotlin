@@ -85,6 +85,8 @@ bootWar {
 /**
  * tomcatを含まないプレーンなwar生成用コマンド
  * build/libs配下にwarが出力されます
+ * Intellijなどでローカル環境のTomcat設定を行う場合、
+ * VMオプションに -Dspring.profiles.active=local を指定してください
  */
 war {
 	archiveFileName = rootProject.ext.archiveFileName

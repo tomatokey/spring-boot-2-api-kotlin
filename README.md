@@ -54,6 +54,12 @@ $ ./gradlew war
 $ export SPRING_PROFILES_ACTIVE=production
 ```
 
+### 補足
+application.ymlを作成していない理由は、  
+プロファイルの指定がないとapplication.ymlを使用してしまい、  
+誤ってローカル環境の設定を本番環境などに反映しないための対策となります。
+
+
 ### IF情報
 [SwaggerUI](http://localhost:8080/swagger-ui/index.html) にてIF情報を確認することができます。  
 確認する場合は、事前にアプリケーションの起動が必要となります。
