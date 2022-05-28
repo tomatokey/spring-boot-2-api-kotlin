@@ -82,6 +82,7 @@ bootWar {
  * テストの実行処理
  */
 test {
+	systemProperty("spring.profiles.active", "test")
 	useJUnitPlatform()
 	dependsOn(dockerComposeUp)
 	finalizedBy(dockerComposeDown)
