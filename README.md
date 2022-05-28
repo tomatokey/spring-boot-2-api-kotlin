@@ -53,7 +53,7 @@ $ export SPRING_PROFILES_ACTIVE=production
 ```
 
 ### IF情報
-[SwaggerUI](http://localhost:8080/swagger-ui/index.html?configUrl=/v3/api-docs/swagger-config) にてIF情報を確認することができます。  
+[SwaggerUI](http://localhost:8080/swagger-ui/index.html) にてIF情報を確認することができます。  
 確認する場合は、事前にアプリケーションの起動が必要となります。
 
 ## 使用ライブラリ
