@@ -24,6 +24,11 @@ public class JacksonConfiguration {
     public static final String DATE_TIME_FORMAT = "yyyy/MM/dd'T'HH:mm:ss";
 
     @Bean
+    public ObjectMapper createObjectMapper() {
+        return createObjectMapperBuilder().build();
+    }
+
+    @Bean
     public Jackson2ObjectMapperBuilder jackson2ObjectMapperBuilder() {
         return createObjectMapperBuilder();
     }
@@ -49,10 +54,6 @@ public class JacksonConfiguration {
                         // オブジェクトに存在しないプロパティがjsonに含まれている場合にエラーにする機能を無効化
                         DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES
                 );
-    }
-
-    public ObjectMapper createObjectMapper() {
-        return createObjectMapperBuilder().build();
     }
 
 }

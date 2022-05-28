@@ -1,4 +1,4 @@
-# SpringBoot(ver.2系)を用いたAPIのプロトタイプ
+# SpringBoot(ver.2.7.0)を用いたAPIのプロトタイプ
 
 ## 実行環境
 | 種別                    | 条件   |

@@ -1,30 +1,33 @@
 package com.prototype.framework.configuration;
 
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
-import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.provisioning.InMemoryUserDetailsManager;
+import org.springframework.security.web.SecurityFilterChain;
 
 /**
  * spring-security用の設定クラス
  */
 @Configuration
 @EnableWebSecurity
-public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
+public class WebSecurityConfiguration {
 
-    @Override
-    protected void configure(HttpSecurity http) throws Exception {
-        // Basic認証を無効化
-        http.authorizeRequests().anyRequest().permitAll();
-        // CSRFを無効化
-        http.csrf().disable();
+    @Bean
+    public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
+        http.authorizeRequests(authorizeRequestsCustomizer -> {
+                // TODO 必要に応じてAuthenticationFilter等を実装し、認証設定を行ってください
+                authorizeRequestsCustomizer.anyRequest().permitAll();
+            })
+            .csrf().disable()
+            .httpBasic().disable();
+        return http.build();
     }
 
-    @Override
-    protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-        // Basic認証のデフォルトのユーザを削除してログに表示されないようにする
-        auth.inMemoryAuthentication();
+    @Bean
+    public InMemoryUserDetailsManager userDetailsService() {
+        return new InMemoryUserDetailsManager();
     }
 
 }
