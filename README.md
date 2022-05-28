@@ -37,11 +37,11 @@ $ ./gradlew :bootRun
 
 ### リリース手順
 tomcat組み込みの単体で起動したい場合や、  
-tomcatを別途用意する場合のどちらでも起動可能なwarの生成を行います。
+tomcatを別途用意する場合のどちらでも起動可能なwarの生成を行います。  
+下記のコマンドを実行すると、build/libs配下にwarが生成されます。
 ```bash
 $ ./gradlew :bootWar
 ```
-上記のコマンドを実行すると、build/libs配下にwarが生成されます。  
 組み込みのtomcat(9.0.60)を用いて起動する場合は、以下のコマンドを実行してください。
 ```bash
 $ java -jar build/libs/spring-boot-2-api.war --spring.profiles.active=production
