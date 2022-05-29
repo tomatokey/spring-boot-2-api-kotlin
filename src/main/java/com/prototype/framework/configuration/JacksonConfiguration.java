@@ -8,6 +8,7 @@ import com.fasterxml.jackson.datatype.jdk8.Jdk8Module;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 import com.fasterxml.jackson.datatype.jsr310.deser.LocalDateTimeDeserializer;
 import com.fasterxml.jackson.datatype.jsr310.ser.LocalDateTimeSerializer;
+import com.fasterxml.jackson.module.kotlin.KotlinModule;
 import com.fasterxml.jackson.module.paramnames.ParameterNamesModule;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -37,10 +38,11 @@ public class JacksonConfiguration {
         final JavaTimeModule jtm = new JavaTimeModule();
         jtm.addSerializer(LocalDateTime.class, new LocalDateTimeSerializer(DateTimeFormatter.ofPattern(DATE_TIME_FORMAT)));
         jtm.addDeserializer(LocalDateTime.class, new LocalDateTimeDeserializer(DateTimeFormatter.ofPattern(DATE_TIME_FORMAT)));
+        final KotlinModule kotlinModule = new KotlinModule.Builder().build();
 
         return new Jackson2ObjectMapperBuilder()
                 // 変換モジュールの設定
-                .modules(new ParameterNamesModule(), new Jdk8Module(), jtm)
+                .modules(new ParameterNamesModule(), new Jdk8Module(), jtm, kotlinModule)
                 // 日付型のタイムゾーン設定
                 .timeZone(TimeZone.getTimeZone("Asia/Tokyo"))
                 // Date型専用のフォーマット設定

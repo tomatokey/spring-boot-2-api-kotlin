@@ -4,15 +4,18 @@ plugins {
 	id 'org.springdoc.openapi-gradle-plugin' version '1.3.4'
 	id 'java'
 	id 'war'
+	id 'org.jetbrains.kotlin.jvm' version '1.6.21'
+	id 'org.jetbrains.kotlin.plugin.spring' version '1.6.21'
+}
+
+ext {
+	warArchiveFileName = 'spring-boot-2-api.war'
+	javaVersion = '17'
 }
 
 group = 'com.prototype'
 version = '0.0.1-SNAPSHOT'
-sourceCompatibility = '17'
-
-ext {
-	archiveFileName = "spring-boot-2-api.war"
-}
+sourceCompatibility = javaVersion
 
 configurations {
 	compileOnly {
@@ -34,6 +37,10 @@ dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-data-jdbc'
 	implementation 'org.springframework.boot:spring-boot-starter-validation'
 	implementation 'org.springframework.boot:spring-boot-starter-security'
+	// Kotlin
+	implementation 'org.jetbrains.kotlin:kotlin-reflect'
+	implementation 'org.jetbrains.kotlin:kotlin-stdlib-jdk8'
+	implementation 'com.fasterxml.jackson.module:jackson-module-kotlin'
 	// DB
 	runtimeOnly 'mysql:mysql-connector-java'
 	// Swagger
@@ -46,6 +53,13 @@ dependencies {
 	testImplementation 'org.springframework.security:spring-security-test'
 	// サポートツール
 	developmentOnly 'org.springframework.boot:spring-boot-devtools'
+}
+
+compileKotlin {
+	kotlinOptions {
+		freeCompilerArgs = ["-Xjsr305=strict"]
+		jvmTarget = '17'
+	}
 }
 
 /**
@@ -79,7 +93,7 @@ bootRun {
  * build/libs配下にwarが出力されます
  */
 bootWar {
-	archiveFileName = rootProject.ext.archiveFileName
+	archiveFileName = warArchiveFileName
 }
 
 /**
@@ -89,7 +103,7 @@ bootWar {
  * VMオプションに -Dspring.profiles.active=local を指定してください
  */
 war {
-	archiveFileName = rootProject.ext.archiveFileName
+	archiveFileName = warArchiveFileName
 }
 
 /**
