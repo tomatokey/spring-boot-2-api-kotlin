@@ -19,10 +19,10 @@ public class UserEntity extends Entity {
 
     @Id
     @Column(COLUMN_NAME_USER_ID)
-    private UserId userId;
+    public UserId userId;
 
     @Column(COLUMN_NAME_USER_NAME)
-    private UserName userName;
+    public UserName userName;
 
     public static UserEntity of(UserName userName) {
         return new UserEntity(null, userName);

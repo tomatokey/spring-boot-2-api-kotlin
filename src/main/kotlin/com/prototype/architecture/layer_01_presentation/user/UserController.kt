@@ -27,36 +27,35 @@ class UserController(
     @PostMapping
     fun create(@RequestBody @Validated query: UserCreateQuery): UserResponse {
         val input = CreateUserInput(query.userName)
-        val output = createUserUseCase.apply(input)
+        val output = createUserUseCase(input)
         return UserResponse.of(output)
     }
 
     @Authorize(UserRoleType.ADMIN)
     @GetMapping
     fun findAll(): List<UserResponse> {
-        val users = findAllUserUseCase.get()
-        return users.map { UserResponse.of(it) }
+        return findAllUserUseCase().map { UserResponse.of(it) }
     }
 
     @Authorize
     @GetMapping("findByToken")
     fun findByToken(): ResponseEntity<UserResponse> {
         val authUser = authService.get()
-        return findByIdUserUseCase.apply(authUser.userId())
+        return findByIdUserUseCase(authUser.userId())
                 .map { UserResponse.of(it) }
                 .let { ResponseEntity.of(it) }
     }
 
     @GetMapping("{userId}")
-    fun findByPathId(@PathVariable("userId") userId: UserId?): ResponseEntity<UserResponse> {
-        return findByIdUserUseCase.apply(userId)
+    fun findByPathId(@PathVariable("userId") userId: UserId): ResponseEntity<UserResponse> {
+        return findByIdUserUseCase(userId)
                 .map { UserResponse.of(it) }
                 .let { ResponseEntity.of(it) }
     }
 
     @GetMapping("findById")
-    fun findById(@RequestParam("userId") userId: UserId?): ResponseEntity<UserResponse> {
-        return findByIdUserUseCase.apply(userId)
+    fun findById(@RequestParam("userId") userId: UserId): ResponseEntity<UserResponse> {
+        return findByIdUserUseCase(userId)
                 .map { UserResponse.of(it) }
                 .let { ResponseEntity.of(it) }
     }

@@ -17,7 +17,7 @@ class CreateUserUseCaseTest {
     void apply() {
         final CreateUserInput input = new CreateUserInput(new UserName("test"));
         final CreateUserOutput output = useCase.apply(input);
-        assertEquals("test", output.userName().getValue());
+        assertEquals("test", output.getUserName().getValue());
     }
 
 }
