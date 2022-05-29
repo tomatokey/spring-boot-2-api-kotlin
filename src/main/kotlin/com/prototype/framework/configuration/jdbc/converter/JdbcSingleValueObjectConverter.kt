@@ -30,10 +30,10 @@ class JdbcSingleValueObjectConverter : GenericConverter {
         if (parameterizedType?.rawType == SingleValueObject::class.java) {
             val genericType: Type = parameterizedType.actualTypeArguments?.get(0) ?: throw IllegalAccessException()
             if (source is String && genericType == String::class.java) {
-                return targetType.type.getDeclaredConstructor(String::class.java).newInstance(source)
+                return targetType.type.getConstructor(String::class.java).newInstance(source)
             }
             if (source is Number && genericType == Integer::class.java) {
-                return targetType.type.getDeclaredConstructor(Int::class.java).newInstance(source.toInt())
+                return targetType.type.getConstructor(Int::class.java).newInstance(source.toInt())
             }
         }
 
