@@ -12,7 +12,7 @@ data class CreateUserOutput(
     companion object {
         fun of(user: UserEntity): CreateUserOutput {
             return CreateUserOutput(
-                    user.userId,
+                    user.userId!!,
                     user.userName
             )
         }

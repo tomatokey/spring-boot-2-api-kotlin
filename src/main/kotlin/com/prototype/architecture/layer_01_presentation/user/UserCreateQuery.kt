@@ -9,5 +9,7 @@ import javax.validation.Valid
 import javax.validation.constraints.NotNull
 
 data class UserCreateQuery(
-        val userName: @NotNull @Valid UserName
+        @field:Valid
+        @field:NotNull
+        val userName: UserName
 ) : Query

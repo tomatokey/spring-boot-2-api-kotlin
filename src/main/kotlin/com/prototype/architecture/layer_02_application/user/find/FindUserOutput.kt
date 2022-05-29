@@ -12,7 +12,7 @@ data class FindUserOutput(
     companion object {
         fun of(user: UserEntity): FindUserOutput {
             return FindUserOutput(
-                    user.userId,
+                    user.userId!!,
                     user.userName
             )
         }
