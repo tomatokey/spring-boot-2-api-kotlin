@@ -40,8 +40,8 @@ class UserController(
     @Authorize
     @GetMapping("findByToken")
     fun findByToken(): ResponseEntity<UserResponse> {
-        val authUser = authService.get()
-        return findByIdUserUseCase(authUser.userId())
+        val authUser = authService()
+        return findByIdUserUseCase(authUser.userId)
                 .map { UserResponse.of(it) }
                 .let { ResponseEntity.of(it) }
     }

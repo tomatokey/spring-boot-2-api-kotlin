@@ -7,11 +7,8 @@ import com.prototype.architecture.layer_03_domain.userrole.UserRolePk
 import com.prototype.architecture.layer_03_domain.userrole.UserRoleRepository
 import com.prototype.architecture.layer_03_domain.userrole.UserRoleType
 import com.prototype.framework.configuration.jdbc.annotation.TransactionalForUpd
-import lombok.AllArgsConstructor
 import org.springframework.stereotype.Service
-import java.util.List
 import java.util.function.Consumer
-import java.util.function.Function
 
 @Service
 class CreateUserUseCase(
