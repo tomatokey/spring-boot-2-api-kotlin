@@ -20,10 +20,10 @@ class CreateUserUseCase(
     operator fun invoke(createUserInput: CreateUserInput): CreateUserOutput {
         val inputEntity = UserEntity.of(createUserInput.userName)
         val createdUser = userRepository.save(inputEntity)
-        val userRoles = userRoleRepository.findAllByUserId(createdUser.userId)
+        val userRoles = userRoleRepository.findAllByUserId(createdUser.userId!!)
         userRoles.forEach(Consumer { userRole: UserRoleEntity -> userRoleRepository.delete(userRole.pk) })
         for (userRoleType in DEFAULT_USER_ROLES) {
-            //userRoleRepository.save(UserRoleEntity(createdUser.userId, userRoleType))
+            userRoleRepository.save(UserRoleEntity(createdUser.userId, userRoleType))
         }
         return CreateUserOutput.of(createdUser)
     }
