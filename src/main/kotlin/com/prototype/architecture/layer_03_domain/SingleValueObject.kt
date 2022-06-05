@@ -1,7 +1,6 @@
 package com.prototype.architecture.layer_03_domain
 
 import com.fasterxml.jackson.annotation.JsonValue
-import java.util.*
 import javax.validation.constraints.NotNull
 
 /**

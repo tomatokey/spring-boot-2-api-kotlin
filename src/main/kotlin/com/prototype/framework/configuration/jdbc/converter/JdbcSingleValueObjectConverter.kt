@@ -1,7 +1,6 @@
 package com.prototype.framework.configuration.jdbc.converter;
 
 import com.prototype.architecture.layer_03_domain.SingleValueObject
-import com.prototype.framework.extension.log
 import org.springframework.core.convert.TypeDescriptor
 import org.springframework.core.convert.converter.GenericConverter
 import org.springframework.core.convert.converter.GenericConverter.ConvertiblePair

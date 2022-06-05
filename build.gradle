@@ -43,9 +43,6 @@ dependencies {
 	runtimeOnly 'mysql:mysql-connector-java'
 	// Swagger
 	implementation 'org.springdoc:springdoc-openapi-ui:1.6.8'
-	// Lombok
-	compileOnly 'org.projectlombok:lombok'
-	annotationProcessor 'org.projectlombok:lombok'
 	// テスト
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 	testImplementation 'org.springframework.security:spring-security-test'

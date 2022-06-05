@@ -5,19 +5,12 @@ import com.prototype.architecture.layer_03_domain.user.UserId
 import com.prototype.architecture.layer_03_domain.userrole.UserRoleEntity
 import com.prototype.architecture.layer_03_domain.userrole.UserRolePk
 import com.prototype.architecture.layer_03_domain.userrole.UserRoleRepository
-import com.prototype.architecture.layer_03_domain.userrole.UserRoleType
 import com.prototype.framework.configuration.jdbc.parameter.JdbcBeanPropertySqlParameterSource
-import lombok.AllArgsConstructor
-import org.apache.catalina.User
 import org.springframework.jdbc.core.DataClassRowMapper
-import org.springframework.jdbc.core.RowMapper
-import org.springframework.jdbc.core.namedparam.BeanPropertySqlParameterSource
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate
 import org.springframework.jdbc.core.simple.SimpleJdbcInsert
 import org.springframework.stereotype.Repository
-import java.sql.ResultSet
-import java.time.LocalDateTime
 import javax.sql.DataSource
 
 @Repository

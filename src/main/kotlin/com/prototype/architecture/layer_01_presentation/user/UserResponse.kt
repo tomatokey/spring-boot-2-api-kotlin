@@ -6,8 +6,6 @@ import com.prototype.architecture.layer_02_application.user.find.FindUserOutput
 import com.prototype.architecture.layer_03_domain.user.UserId
 import com.prototype.architecture.layer_03_domain.user.UserName
 import com.prototype.architecture.layer_03_domain.userrole.UserRoleType
-import lombok.Builder
-import lombok.Getter
 
 data class UserResponse(
         val userId: UserId,
