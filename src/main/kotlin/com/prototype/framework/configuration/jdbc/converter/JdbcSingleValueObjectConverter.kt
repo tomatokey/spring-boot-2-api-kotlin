@@ -1,6 +1,7 @@
 package com.prototype.framework.configuration.jdbc.converter;
 
 import com.prototype.architecture.layer_03_domain.SingleValueObject
+import com.prototype.framework.extension.log
 import org.springframework.core.convert.TypeDescriptor
 import org.springframework.core.convert.converter.GenericConverter
 import org.springframework.core.convert.converter.GenericConverter.ConvertiblePair
@@ -39,6 +40,9 @@ class JdbcSingleValueObjectConverter : GenericConverter {
 
         // DB更新用
         if (source is SingleValueObject<*>) {
+            if (source.isInvalid) {
+                throw IllegalArgumentException("${source.javaClass}:${source.value} is invalid value")
+            }
             return source.value
         }
 

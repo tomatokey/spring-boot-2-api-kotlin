@@ -1,21 +1,17 @@
 package com.prototype.framework.configuration.mvc.auth;
 
-import com.prototype.architecture.layer_03_domain.auth.AuthUser;
-import com.prototype.architecture.layer_03_domain.user.UserId;
-import com.prototype.architecture.layer_03_domain.userrole.UserRoleType;
-import com.prototype.framework.utils.ObjectUtils;
-import org.springframework.core.annotation.AnnotationUtils;
-import org.springframework.http.HttpStatus;
-import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.web.method.HandlerMethod;
-import org.springframework.web.server.ResponseStatusException;
-import org.springframework.web.servlet.HandlerInterceptor;
-
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import java.lang.reflect.Method;
-import java.util.List;
-import java.util.Optional;
+import com.prototype.architecture.layer_03_domain.auth.AuthUser
+import com.prototype.architecture.layer_03_domain.user.UserId
+import com.prototype.architecture.layer_03_domain.userrole.UserRoleType
+import org.springframework.core.annotation.AnnotationUtils
+import org.springframework.http.HttpStatus
+import org.springframework.security.core.context.SecurityContextHolder
+import org.springframework.web.method.HandlerMethod
+import org.springframework.web.server.ResponseStatusException
+import org.springframework.web.servlet.HandlerInterceptor
+import java.lang.reflect.Method
+import javax.servlet.http.HttpServletRequest
+import javax.servlet.http.HttpServletResponse
 
 class AuthorizationHandlerInterceptor : HandlerInterceptor {
 
@@ -59,7 +55,7 @@ class AuthorizationHandlerInterceptor : HandlerInterceptor {
     private fun getAuthUser(request: HttpServletRequest): AuthUser? {
         // Authorizationの値を取得
         val authorization = request.getHeader(AUTHORIZATION_HEADER_NAME)
-        if (ObjectUtils.isEmpty(authorization)) {
+        if (authorization.isNullOrBlank()) {
             return null
         }
         // Bearer tokenの形式であることをチェック
