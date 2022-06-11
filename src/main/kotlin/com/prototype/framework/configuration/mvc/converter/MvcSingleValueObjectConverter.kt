@@ -1,6 +1,7 @@
 package com.prototype.framework.configuration.mvc.converter;
 
 import com.prototype.architecture.layer_03_domain.SingleValueObject
+import com.prototype.framework.extension.toSingleValueObject
 import org.springframework.core.convert.TypeDescriptor
 import org.springframework.core.convert.converter.GenericConverter
 import org.springframework.core.convert.converter.GenericConverter.ConvertiblePair
@@ -23,18 +24,7 @@ class MvcSingleValueObjectConverter : GenericConverter {
     }
 
     override fun convert(source: Any?, sourceType: TypeDescriptor, targetType: TypeDescriptor): Any? {
-        val parameterizedType = targetType.type.genericInterfaces[0] as? ParameterizedType
-        if (source is String && parameterizedType?.rawType == SingleValueObject::class.java) {
-            val genericType: Type = parameterizedType.actualTypeArguments?.get(0) ?: throw IllegalAccessException()
-            if (genericType == String::class.java) {
-                return targetType.type.getConstructor(String::class.java).newInstance(source)
-            }
-            if (genericType == Integer::class.java) {
-                return targetType.type.getConstructor(Int::class.java).newInstance(source.toInt())
-            }
-        }
-
-        return source;
+        return source?.toSingleValueObject(sourceType, targetType)
     }
 
 }

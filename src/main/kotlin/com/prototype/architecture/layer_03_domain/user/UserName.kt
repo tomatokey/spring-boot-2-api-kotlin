@@ -5,5 +5,5 @@ import javax.validation.constraints.NotBlank
 
 data class UserName(@field:NotBlank override val value: String) : SingleValueObject<String> {
     override val isInvalid: Boolean
-        get() = value.isBlank() || value.length >= 20
+        get() = value.isBlank() || value.length >= 100
 }
