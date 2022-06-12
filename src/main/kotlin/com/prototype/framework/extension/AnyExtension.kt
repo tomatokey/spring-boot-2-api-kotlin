@@ -4,7 +4,6 @@ import com.prototype.architecture.layer_03_domain.SingleValueObject
 import org.slf4j.Logger
 import org.slf4j.LoggerFactory
 import org.springframework.core.convert.TypeDescriptor
-import java.lang.reflect.ParameterizedType
 import kotlin.reflect.full.primaryConstructor
 
 val Any.log: Logger
