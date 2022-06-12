@@ -17,20 +17,20 @@ fun Any.toSingleValueObject(sourceType: TypeDescriptor, targetType: TypeDescript
 
     if (this is String) {
         return when (targetGenericType) {
-            java.lang.String::class.java -> targetType.type.getConstructor(String::class.java).newInstance(this)
-            java.lang.Integer::class.java -> targetType.type.getConstructor(Int::class.java).newInstance(this.toInt())
-            java.lang.Long::class.java -> targetType.type.getConstructor(Long::class.java).newInstance(this.toLong())
-            java.lang.Float::class.java -> targetType.type.getConstructor(Float::class.java).newInstance(this.toFloat())
-            java.lang.Double::class.java -> targetType.type.getConstructor(Double::class.java).newInstance(this.toDouble())
+            String::class.javaObjectType -> targetType.type.getConstructor(String::class.java).newInstance(this)
+            Int::class.javaObjectType -> targetType.type.getConstructor(Int::class.java).newInstance(this.toInt())
+            Long::class.javaObjectType -> targetType.type.getConstructor(Long::class.java).newInstance(this.toLong())
+            Float::class.javaObjectType -> targetType.type.getConstructor(Float::class.java).newInstance(this.toFloat())
+            Double::class.javaObjectType -> targetType.type.getConstructor(Double::class.java).newInstance(this.toDouble())
             else -> throw IllegalStateException("String型から${targetGenericType}への変換処理を追加してください")
         }
     }
     if (this is Number) {
         return when (targetGenericType) {
-            java.lang.Integer::class.java -> targetType.type.getConstructor(Int::class.java).newInstance(this.toInt())
-            java.lang.Long::class.java -> targetType.type.getConstructor(Long::class.java).newInstance(this.toLong())
-            java.lang.Float::class.java -> targetType.type.getConstructor(Float::class.java).newInstance(this.toFloat())
-            java.lang.Double::class.java -> targetType.type.getConstructor(Double::class.java).newInstance(this.toDouble())
+            Int::class.javaObjectType -> targetType.type.getConstructor(Int::class.java).newInstance(this.toInt())
+            Long::class.javaObjectType -> targetType.type.getConstructor(Long::class.java).newInstance(this.toLong())
+            Float::class.javaObjectType -> targetType.type.getConstructor(Float::class.java).newInstance(this.toFloat())
+            Double::class.javaObjectType -> targetType.type.getConstructor(Double::class.java).newInstance(this.toDouble())
             else -> throw IllegalStateException("Number型から${targetGenericType}への変換処理を追加してください")
         }
     }
