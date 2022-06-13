@@ -63,7 +63,7 @@ class AuthorizationHandlerInterceptor : HandlerInterceptor {
             return null
         }
         // TODO JWTトークンから認証ユーザー情報を生成
-        val token = authorization.replace(AUTHORIZATION_PREFIX, "")
+//        val token = authorization.replace(AUTHORIZATION_PREFIX, "")
         return AuthUser(UserId(1), listOf(UserRoleType.ADMIN))
     }
 

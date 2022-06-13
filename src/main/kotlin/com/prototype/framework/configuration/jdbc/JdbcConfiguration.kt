@@ -14,9 +14,9 @@ import org.springframework.core.convert.converter.GenericConverter
 import org.springframework.core.convert.support.DefaultConversionService
 import org.springframework.data.jdbc.repository.config.AbstractJdbcConfiguration
 import org.springframework.data.jdbc.repository.config.EnableJdbcAuditing
+import org.springframework.jdbc.core.JdbcTemplate
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate
 import org.springframework.jdbc.datasource.DataSourceTransactionManager
-import java.util.Map
 import javax.sql.DataSource
 
 /**
@@ -57,9 +57,9 @@ class JdbcConfiguration : AbstractJdbcConfiguration() {
     fun dynamicRoutingDataSource(): DataSource {
         val dataSourceUpd = dataSourceUpd()
         val dataSourceRef = dataSourceRef()
-        val targetDataSources = Map.of<Any, Any>(
-                DataSourceType.UPD, dataSourceUpd,
-                DataSourceType.REF, dataSourceRef
+        val targetDataSources = mapOf<Any, Any>(
+                DataSourceType.UPD to dataSourceUpd,
+                DataSourceType.REF to dataSourceRef
         )
         val dynamicRoutingDataSource = DynamicRoutingDataSource()
         dynamicRoutingDataSource.setTargetDataSources(targetDataSources)
@@ -90,5 +90,10 @@ class JdbcConfiguration : AbstractJdbcConfiguration() {
     @Bean
     fun namedParameterJdbcTemplate(dataSource: DataSource): NamedParameterJdbcTemplate {
         return NamedParameterJdbcTemplate(dataSource)
+    }
+
+    @Bean
+    fun jdbcTemplate(dataSource: DataSource): JdbcTemplate {
+        return JdbcTemplate(dataSource)
     }
 }
