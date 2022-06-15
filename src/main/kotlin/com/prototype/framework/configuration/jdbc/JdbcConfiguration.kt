@@ -71,7 +71,7 @@ class JdbcConfiguration : AbstractJdbcConfiguration() {
      * 更新用DataSource
      * @return
      */
-    @Bean
+    @Bean("dataSourceUpd")
     @ConfigurationProperties(prefix = "spring.datasource.upd")
     fun dataSourceUpd(): DataSource {
         return DataSourceBuilder.create().type(HikariDataSource::class.java).build()
@@ -81,7 +81,7 @@ class JdbcConfiguration : AbstractJdbcConfiguration() {
      * 参照用DataSource
      * @return
      */
-    @Bean
+    @Bean("dataSourceRef")
     @ConfigurationProperties(prefix = "spring.datasource.ref")
     fun dataSourceRef(): DataSource {
         return DataSourceBuilder.create().type(HikariDataSource::class.java).build()

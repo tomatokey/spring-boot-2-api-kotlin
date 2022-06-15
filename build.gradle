@@ -107,6 +107,6 @@ war {
 test {
 	systemProperty("spring.profiles.active", "test")
 	useJUnitPlatform()
-	dependsOn(dockerComposeUp)
-	finalizedBy(dockerComposeDown)
+//	dependsOn(dockerComposeUp)
+//	finalizedBy(dockerComposeDown)
 }

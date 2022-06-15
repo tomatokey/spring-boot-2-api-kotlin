@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+    <property name="FILE_NAME" value="contents.log" />
+    <property name="FORMAT" value="[%-5level] %d{yyyy-MM-dd HH:mm:ss.SSS} %logger{36} - %msg%n" />
+    <property name="LOG_LEVEL" value="INFO" />
+
+    <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <pattern>${FORMAT}</pattern>
+        </encoder>
+    </appender>
+
+    <root level="${LOG_LEVEL}">
+        <appender-ref ref="STDOUT" />
+    </root>
+
+</configuration>
