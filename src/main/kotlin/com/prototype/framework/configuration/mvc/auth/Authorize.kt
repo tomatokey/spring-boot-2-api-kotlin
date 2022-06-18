@@ -10,11 +10,8 @@ import org.springframework.core.annotation.AliasFor
 @Target(AnnotationTarget.ANNOTATION_CLASS, AnnotationTarget.CLASS, AnnotationTarget.FUNCTION, AnnotationTarget.PROPERTY_GETTER, AnnotationTarget.PROPERTY_SETTER)
 @Retention(AnnotationRetention.RUNTIME)
 annotation class Authorize(
-        @get:AliasFor("roles") vararg val value: UserRoleType = [],
-        /**
-         * アクセスを許可する権限を設定します
-         *
-         * @return
-         */
-        @get:AliasFor("value") val roles: Array<UserRoleType> = []
+        @get:AliasFor("roles")
+        vararg val value: UserRoleType = [],
+        @get:AliasFor("value")
+        val roles: Array<UserRoleType> = []
 )

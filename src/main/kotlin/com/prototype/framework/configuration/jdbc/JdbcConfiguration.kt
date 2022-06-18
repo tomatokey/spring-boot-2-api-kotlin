@@ -1,5 +1,7 @@
 package com.prototype.framework.configuration.jdbc
 
+import com.prototype.framework.configuration.jdbc.annotation.DataSourceRef
+import com.prototype.framework.configuration.jdbc.annotation.DataSourceUpd
 import com.prototype.framework.configuration.jdbc.converter.JdbcSingleValueObjectConverter
 import com.prototype.framework.configuration.jdbc.datasource.DataSourceType
 import com.prototype.framework.configuration.jdbc.datasource.DynamicRoutingDataSource
@@ -17,6 +19,8 @@ import org.springframework.data.jdbc.repository.config.EnableJdbcAuditing
 import org.springframework.jdbc.core.JdbcTemplate
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate
 import org.springframework.jdbc.datasource.DataSourceTransactionManager
+import org.springframework.jdbc.support.JdbcTransactionManager
+import org.springframework.transaction.PlatformTransactionManager
 import javax.sql.DataSource
 
 /**
@@ -43,9 +47,9 @@ class JdbcConfiguration : AbstractJdbcConfiguration() {
         }
     }
 
-    @Bean
-    fun transactionManager(dataSource: DataSource): DataSourceTransactionManager {
-        val transactionManager = DataSourceTransactionManager(dataSource)
+    @Bean(TRANSACTION_MANAGER)
+    fun transactionManager(@DataSourceUpd dataSource: DataSource): JdbcTransactionManager {
+        val transactionManager = JdbcTransactionManager(dataSource)
         // コミット時にエラーが発生した場合、ロールバックを行うように設定
         // コネクションプールを使用しているため、コミットフェーズでエラーになったコネクションが別の処理で使われ、失敗した操作が一緒にコミットされることを防ぐため
         transactionManager.isRollbackOnCommitFailure = true
@@ -71,7 +75,8 @@ class JdbcConfiguration : AbstractJdbcConfiguration() {
      * 更新用DataSource
      * @return
      */
-    @Bean("dataSourceUpd")
+    @Bean(DATA_SOURCE_UPD)
+    @DataSourceUpd
     @ConfigurationProperties(prefix = "spring.datasource.upd")
     fun dataSourceUpd(): DataSource {
         return DataSourceBuilder.create().type(HikariDataSource::class.java).build()
@@ -81,7 +86,8 @@ class JdbcConfiguration : AbstractJdbcConfiguration() {
      * 参照用DataSource
      * @return
      */
-    @Bean("dataSourceRef")
+    @Bean(DATA_SOURCE_REF)
+    @DataSourceRef
     @ConfigurationProperties(prefix = "spring.datasource.ref")
     fun dataSourceRef(): DataSource {
         return DataSourceBuilder.create().type(HikariDataSource::class.java).build()
@@ -96,4 +102,11 @@ class JdbcConfiguration : AbstractJdbcConfiguration() {
     fun jdbcTemplate(dataSource: DataSource): JdbcTemplate {
         return JdbcTemplate(dataSource)
     }
+
+    companion object {
+        const val DATA_SOURCE_UPD = "dataSourceUpd"
+        const val DATA_SOURCE_REF = "dataSourceRef"
+        const val TRANSACTION_MANAGER = "transactionManager"
+    }
+
 }
