@@ -1,6 +1,7 @@
 package com.prototype.architecture.layer_02_application.user.create
 
 import com.prototype.SqlForUpd
+import com.prototype.Sqls
 import com.prototype.architecture.layer_03_domain.user.UserEntity
 import com.prototype.architecture.layer_03_domain.user.UserName
 import org.junit.jupiter.api.Assertions.assertEquals
@@ -21,8 +22,8 @@ class CreateUserUseCaseTest {
     private lateinit var dataSource: DataSource
 
     @SqlForUpd(scripts = [
-        "/sql/user_tのレコードを全て削除.sql",
-        "/sql/user_tに1件レコードを追加.sql"
+        Sqls.user_tのレコードを全て削除,
+        Sqls.user_tに1件レコードを追加
     ])
     @Test
     fun `レコード追加のテスト`() {
