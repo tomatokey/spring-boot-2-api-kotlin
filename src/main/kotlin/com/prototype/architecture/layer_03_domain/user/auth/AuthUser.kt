@@ -1,7 +1,7 @@
-package com.prototype.architecture.layer_03_domain.auth
+package com.prototype.architecture.layer_03_domain.user.auth
 
 import com.prototype.architecture.layer_03_domain.user.UserId
-import com.prototype.architecture.layer_03_domain.userrole.UserRoleType
+import com.prototype.architecture.layer_03_domain.user.role.UserRoleType
 import org.springframework.security.core.Authentication
 import org.springframework.security.core.GrantedAuthority
 

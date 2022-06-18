@@ -1,9 +1,9 @@
-package com.prototype.architecture.layer_03_domain.userrole
+package com.prototype.architecture.layer_03_domain.user.role
 
 import com.prototype.architecture.layer_03_domain.Entity
 import com.prototype.architecture.layer_03_domain.user.UserEntity
 import com.prototype.architecture.layer_03_domain.user.UserId
-import com.prototype.architecture.layer_03_domain.userrole.UserRoleEntity.Companion.TABLE_NAME
+import com.prototype.architecture.layer_03_domain.user.role.UserRoleEntity.Companion.TABLE_NAME
 import org.springframework.data.annotation.Id
 import org.springframework.data.relational.core.mapping.Column
 import org.springframework.data.relational.core.mapping.Table

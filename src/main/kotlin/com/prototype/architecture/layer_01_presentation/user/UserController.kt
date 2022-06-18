@@ -4,16 +4,16 @@ import com.prototype.architecture.layer_02_application.user.create.CreateUserInp
 import com.prototype.architecture.layer_02_application.user.create.CreateUserUseCase
 import com.prototype.architecture.layer_02_application.user.find.FindAllUserUseCase
 import com.prototype.architecture.layer_02_application.user.find.FindByIdUserUseCase
-import com.prototype.architecture.layer_03_domain.auth.GetAuthUserService
+import com.prototype.architecture.layer_03_domain.user.auth.GetAuthUserService
 import com.prototype.architecture.layer_03_domain.user.UserId
-import com.prototype.architecture.layer_03_domain.userrole.UserRoleType
+import com.prototype.architecture.layer_03_domain.user.role.UserRoleType
 import com.prototype.framework.configuration.mvc.auth.Authorize
 import org.springframework.http.ResponseEntity
 import org.springframework.validation.annotation.Validated
 import org.springframework.web.bind.annotation.*
 
 @RestController
-@RequestMapping("users")
+@RequestMapping("/users")
 class UserController(
         private val createUserUseCase: CreateUserUseCase,
         private val findAllUserUseCase: FindAllUserUseCase,

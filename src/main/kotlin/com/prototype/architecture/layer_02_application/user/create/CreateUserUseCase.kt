@@ -2,10 +2,10 @@ package com.prototype.architecture.layer_02_application.user.create
 
 import com.prototype.architecture.layer_03_domain.user.UserEntity
 import com.prototype.architecture.layer_03_domain.user.UserRepository
-import com.prototype.architecture.layer_03_domain.userrole.UserRoleEntity
-import com.prototype.architecture.layer_03_domain.userrole.UserRolePk
-import com.prototype.architecture.layer_03_domain.userrole.UserRoleRepository
-import com.prototype.architecture.layer_03_domain.userrole.UserRoleType
+import com.prototype.architecture.layer_03_domain.user.role.UserRoleEntity
+import com.prototype.architecture.layer_03_domain.user.role.UserRolePk
+import com.prototype.architecture.layer_03_domain.user.role.UserRoleRepository
+import com.prototype.architecture.layer_03_domain.user.role.UserRoleType
 import com.prototype.framework.configuration.jdbc.annotation.TransactionalForUpd
 import org.springframework.stereotype.Service
 import java.util.function.Consumer

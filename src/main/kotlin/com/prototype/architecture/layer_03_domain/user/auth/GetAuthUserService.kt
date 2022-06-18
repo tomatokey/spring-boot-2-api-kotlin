@@ -1,4 +1,4 @@
-package com.prototype.architecture.layer_03_domain.auth;
+package com.prototype.architecture.layer_03_domain.user.auth;
 
 import org.springframework.http.HttpStatus
 import org.springframework.security.core.Authentication

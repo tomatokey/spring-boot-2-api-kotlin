@@ -1,6 +1,6 @@
 package com.prototype.framework.configuration.mvc.auth
 
-import com.prototype.architecture.layer_03_domain.userrole.UserRoleType
+import com.prototype.architecture.layer_03_domain.user.role.UserRoleType
 import org.springframework.core.annotation.AliasFor
 
 /**

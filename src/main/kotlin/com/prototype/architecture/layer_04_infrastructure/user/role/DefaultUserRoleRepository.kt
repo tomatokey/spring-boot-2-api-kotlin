@@ -1,10 +1,10 @@
-package com.prototype.architecture.layer_04_infrastructure
+package com.prototype.architecture.layer_04_infrastructure.user.role
 
 import com.prototype.architecture.layer_03_domain.user.UserEntity
 import com.prototype.architecture.layer_03_domain.user.UserId
-import com.prototype.architecture.layer_03_domain.userrole.UserRoleEntity
-import com.prototype.architecture.layer_03_domain.userrole.UserRolePk
-import com.prototype.architecture.layer_03_domain.userrole.UserRoleRepository
+import com.prototype.architecture.layer_03_domain.user.role.UserRoleEntity
+import com.prototype.architecture.layer_03_domain.user.role.UserRolePk
+import com.prototype.architecture.layer_03_domain.user.role.UserRoleRepository
 import com.prototype.framework.configuration.jdbc.parameter.JdbcBeanPropertySqlParameterSource
 import org.springframework.jdbc.core.DataClassRowMapper
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource
@@ -14,7 +14,7 @@ import org.springframework.stereotype.Repository
 import javax.sql.DataSource
 
 @Repository
-class DbUserRoleRepository(
+class DefaultUserRoleRepository(
         private val dataSource: DataSource,
         private val jdbcTemplate: NamedParameterJdbcTemplate
 ) : UserRoleRepository<UserRoleEntity, UserRolePk> {

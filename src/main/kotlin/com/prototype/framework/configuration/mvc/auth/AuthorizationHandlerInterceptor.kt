@@ -1,8 +1,8 @@
 package com.prototype.framework.configuration.mvc.auth;
 
-import com.prototype.architecture.layer_03_domain.auth.AuthUser
+import com.prototype.architecture.layer_03_domain.user.auth.AuthUser
 import com.prototype.architecture.layer_03_domain.user.UserId
-import com.prototype.architecture.layer_03_domain.userrole.UserRoleType
+import com.prototype.architecture.layer_03_domain.user.role.UserRoleType
 import org.springframework.core.annotation.AnnotationUtils
 import org.springframework.http.HttpStatus
 import org.springframework.security.core.context.SecurityContextHolder

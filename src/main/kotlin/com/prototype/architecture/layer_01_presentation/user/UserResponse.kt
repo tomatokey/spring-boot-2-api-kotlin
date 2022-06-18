@@ -5,7 +5,7 @@ import com.prototype.architecture.layer_02_application.user.create.CreateUserOut
 import com.prototype.architecture.layer_02_application.user.find.FindUserOutput
 import com.prototype.architecture.layer_03_domain.user.UserId
 import com.prototype.architecture.layer_03_domain.user.UserName
-import com.prototype.architecture.layer_03_domain.userrole.UserRoleType
+import com.prototype.architecture.layer_03_domain.user.role.UserRoleType
 
 data class UserResponse(
         val userId: UserId,

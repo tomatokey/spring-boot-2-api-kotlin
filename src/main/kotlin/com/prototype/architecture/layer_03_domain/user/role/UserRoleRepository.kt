@@ -1,4 +1,4 @@
-package com.prototype.architecture.layer_03_domain.userrole
+package com.prototype.architecture.layer_03_domain.user.role
 
 import com.prototype.architecture.layer_03_domain.user.UserId
 
