@@ -12,10 +12,11 @@ val Any.log: Logger
 fun Any.toSingleValueObject(sourceType: TypeDescriptor, targetType: TypeDescriptor): Any {
     val targetKClass = targetType.type.kotlin
     val targetGenericType = targetKClass.supertypes
-            .firstOrNull { it.classifier == SingleValueObject::class }
-            ?.arguments?.getOrNull(0)?.type?.classifier
-            ?: throw IllegalStateException("${targetKClass}はSingleValueObjectを継承していません")
-    val targetConstructor = targetKClass.primaryConstructor ?: throw IllegalStateException("${targetKClass}にコンストラクタが存在しません")
+        .firstOrNull { it.classifier == SingleValueObject::class }
+        ?.arguments?.getOrNull(0)?.type?.classifier
+        ?: throw IllegalStateException("${targetKClass}はSingleValueObjectを継承していません")
+    val targetConstructor =
+        targetKClass.primaryConstructor ?: throw IllegalStateException("${targetKClass}にコンストラクタが存在しません")
 
     if (this is String) {
         return when (targetGenericType) {

@@ -9,7 +9,7 @@ import java.net.URI
 
 @Repository
 class DefaultGithubReposRepository(
-        private val restTemplate: RestTemplate
+    private val restTemplate: RestTemplate
 ) : GithubReposRepository {
 
     override fun get(githubUserName: GithubUserName): List<GithubReposEntity>? {

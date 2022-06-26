@@ -6,8 +6,8 @@ import org.springframework.security.core.Authentication
 import org.springframework.security.core.GrantedAuthority
 
 data class AuthUser(
-        var userId: UserId,
-        var userRoleTypes: List<UserRoleType>
+    var userId: UserId,
+    var userRoleTypes: List<UserRoleType>
 ) : Authentication {
 
     override fun getAuthorities(): Collection<GrantedAuthority?> {

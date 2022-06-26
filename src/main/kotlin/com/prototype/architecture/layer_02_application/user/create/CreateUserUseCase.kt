@@ -12,8 +12,8 @@ import java.util.function.Consumer
 
 @Service
 class CreateUserUseCase(
-        val userRepository: UserRepository,
-        val userRoleRepository: UserRoleRepository<UserRoleEntity, UserRolePk>
+    val userRepository: UserRepository,
+    val userRoleRepository: UserRoleRepository<UserRoleEntity, UserRolePk>
 ) {
 
     @TransactionalForUpd

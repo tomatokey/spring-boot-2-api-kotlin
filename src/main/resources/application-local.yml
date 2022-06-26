@@ -8,7 +8,7 @@ spring:
       autoCommit: false
       connectionTimeout: 2000
       # minimumIdleとmaximumPoolSizeを同じ値にしない場合はidleTimeoutを指定してください
-#      idleTimeout: 10000
+      #      idleTimeout: 10000
       maxLifetime: 60000
       minimumIdle: 2
       maximumPoolSize: 2
@@ -20,7 +20,7 @@ spring:
       autoCommit: false
       connectionTimeout: 2000
       # minimumIdleとmaximumPoolSizeを同じ値にしない場合はidleTimeoutを指定してください
-#      idleTimeout: 10000
+      #      idleTimeout: 10000
       maxLifetime: 60000
       minimumIdle: 2
       maximumPoolSize: 2

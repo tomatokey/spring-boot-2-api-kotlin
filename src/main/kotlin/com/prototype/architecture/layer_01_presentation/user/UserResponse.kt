@@ -8,9 +8,9 @@ import com.prototype.architecture.layer_03_domain.user.UserName
 import com.prototype.architecture.layer_03_domain.user.role.UserRoleType
 
 data class UserResponse(
-        val userId: UserId,
-        val userName: UserName,
-        val roleTypes: List<UserRoleType> = listOf(UserRoleType.VIEWER)
+    val userId: UserId,
+    val userName: UserName,
+    val roleTypes: List<UserRoleType> = listOf(UserRoleType.VIEWER)
 ) : Response {
 
     companion object {

@@ -21,14 +21,14 @@ abstract class Entity {
     @JsonSerialize
     lateinit var updateTime: LocalDateTime
 
-    fun applyForCreate() : Entity {
+    fun applyForCreate(): Entity {
         return this.apply {
             registerTime = LocalDateTime.now()
             updateTime = LocalDateTime.now()
         }
     }
 
-    fun applyForUpdate() : Entity {
+    fun applyForUpdate(): Entity {
         return this.apply {
             updateTime = LocalDateTime.now()
         }

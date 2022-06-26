@@ -1,16 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <configuration>
-    <property name="FILE_NAME" value="contents.log" />
-    <property name="FORMAT" value="[%-5level] %d{yyyy-MM-dd HH:mm:ss.SSS} %logger{36} - %msg%n" />
+    <property name="FILE_NAME" value="contents.log"/>
+    <property name="FORMAT" value="[%-5level] %d{yyyy-MM-dd HH:mm:ss.SSS} %logger{36} - %msg%n"/>
 
     <springProfile name="local">
-        <property name="LOG_DIR" value="logs" />
-        <property name="LOG_LEVEL" value="INFO" />
+        <property name="LOG_DIR" value="logs"/>
+        <property name="LOG_LEVEL" value="INFO"/>
     </springProfile>
 
     <springProfile name="production">
-        <property name="LOG_DIR" value="/var/log/tomcat" />
-        <property name="LOG_LEVEL" value="ERROR" />
+        <property name="LOG_DIR" value="/var/log/tomcat"/>
+        <property name="LOG_LEVEL" value="ERROR"/>
     </springProfile>
 
     <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
@@ -32,9 +32,9 @@
 
     <root level="${LOG_LEVEL}">
         <springProfile name="local">
-            <appender-ref ref="STDOUT" />
+            <appender-ref ref="STDOUT"/>
         </springProfile>
-        <appender-ref ref="FILE" />
+        <appender-ref ref="FILE"/>
     </root>
 
 </configuration>

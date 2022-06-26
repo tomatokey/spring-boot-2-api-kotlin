@@ -18,11 +18,11 @@ class WebSecurityConfiguration {
     @Throws(Exception::class)
     fun filterChain(http: HttpSecurity): SecurityFilterChain {
         return http.authorizeRequests()
-                .anyRequest().permitAll()
-                .and()
-                .csrf().disable()
-                .httpBasic().disable()
-                .build()
+            .anyRequest().permitAll()
+            .and()
+            .csrf().disable()
+            .httpBasic().disable()
+            .build()
     }
 
     @Bean

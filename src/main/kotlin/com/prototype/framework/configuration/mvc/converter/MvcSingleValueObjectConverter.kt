@@ -6,8 +6,6 @@ import org.springframework.core.convert.TypeDescriptor
 import org.springframework.core.convert.converter.GenericConverter
 import org.springframework.core.convert.converter.GenericConverter.ConvertiblePair
 import org.springframework.stereotype.Component
-import java.lang.reflect.ParameterizedType
-import java.lang.reflect.Type
 
 /**
  * ValueObjectを継承したクラスを
@@ -18,8 +16,8 @@ class MvcSingleValueObjectConverter : GenericConverter {
 
     override fun getConvertibleTypes(): MutableSet<ConvertiblePair>? {
         return listOf(
-                ConvertiblePair(String::class.java, SingleValueObject::class.java),
-                ConvertiblePair(Number::class.java, SingleValueObject::class.java)
+            ConvertiblePair(String::class.java, SingleValueObject::class.java),
+            ConvertiblePair(Number::class.java, SingleValueObject::class.java)
         ).toMutableSet()
     }
 

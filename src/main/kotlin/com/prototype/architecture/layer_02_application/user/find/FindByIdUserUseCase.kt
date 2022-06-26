@@ -7,7 +7,7 @@ import java.util.*
 
 @Service
 class FindByIdUserUseCase(
-        val userRepository: UserRepository
+    val userRepository: UserRepository
 ) {
 
     operator fun invoke(userId: UserId): Optional<FindUserOutput> {

@@ -1,17 +1,17 @@
 plugins {
-	id 'org.springframework.boot' version '2.7.0'
-	id 'io.spring.dependency-management' version '1.0.11.RELEASE'
-	id 'org.springdoc.openapi-gradle-plugin' version '1.3.4'
-	id 'java'
-	id 'war'
-	id 'org.jetbrains.kotlin.jvm' version '1.7.0'
-	id 'org.jetbrains.kotlin.plugin.spring' version '1.7.0'
-	id "com.github.ben-manes.versions" version '0.42.0'
+    id 'org.springframework.boot' version '2.7.0'
+    id 'io.spring.dependency-management' version '1.0.11.RELEASE'
+    id 'org.springdoc.openapi-gradle-plugin' version '1.3.4'
+    id 'java'
+    id 'war'
+    id 'org.jetbrains.kotlin.jvm' version '1.7.0'
+    id 'org.jetbrains.kotlin.plugin.spring' version '1.7.0'
+    id "com.github.ben-manes.versions" version '0.42.0'
 }
 
 ext {
-	warArchiveFileName = 'spring-boot-2-api.war'
-	javaVersion = '17'
+    warArchiveFileName = 'spring-boot-2-api.war'
+    javaVersion = '17'
 }
 
 group = 'com.prototype'
@@ -19,61 +19,61 @@ version = '0.0.1-SNAPSHOT'
 sourceCompatibility = javaVersion
 
 configurations {
-	compileOnly {
-		extendsFrom annotationProcessor
-	}
+    compileOnly {
+        extendsFrom annotationProcessor
+    }
 }
 
 repositories {
-	mavenCentral()
+    mavenCentral()
 }
 
 dependencies {
-	// SpringBoot
-	implementation 'org.springframework.boot:spring-boot-starter-web'
-	providedRuntime 'org.springframework.boot:spring-boot-starter-tomcat'
-	implementation 'org.springframework.boot:spring-boot-starter-aop'
-	implementation 'org.springframework.boot:spring-boot-starter-data-jdbc'
-	implementation 'org.springframework.boot:spring-boot-starter-validation'
-	implementation 'org.springframework.boot:spring-boot-starter-security'
-	// Kotlin
-	implementation 'org.jetbrains.kotlin:kotlin-reflect'
-	implementation 'org.jetbrains.kotlin:kotlin-stdlib-jdk8'
-	implementation 'com.fasterxml.jackson.module:jackson-module-kotlin'
-	// DB
-	runtimeOnly 'mysql:mysql-connector-java'
-	// Swagger
-	implementation 'org.springdoc:springdoc-openapi-ui:1.6.8'
-	// テスト
-	testImplementation 'org.springframework.boot:spring-boot-starter-test'
-	testImplementation 'org.springframework.security:spring-security-test'
-	// サポートツール
-	developmentOnly 'org.springframework.boot:spring-boot-devtools'
+    // SpringBoot
+    implementation 'org.springframework.boot:spring-boot-starter-web'
+    providedRuntime 'org.springframework.boot:spring-boot-starter-tomcat'
+    implementation 'org.springframework.boot:spring-boot-starter-aop'
+    implementation 'org.springframework.boot:spring-boot-starter-data-jdbc'
+    implementation 'org.springframework.boot:spring-boot-starter-validation'
+    implementation 'org.springframework.boot:spring-boot-starter-security'
+    // Kotlin
+    implementation 'org.jetbrains.kotlin:kotlin-reflect'
+    implementation 'org.jetbrains.kotlin:kotlin-stdlib-jdk8'
+    implementation 'com.fasterxml.jackson.module:jackson-module-kotlin'
+    // DB
+    runtimeOnly 'mysql:mysql-connector-java'
+    // Swagger
+    implementation 'org.springdoc:springdoc-openapi-ui:1.6.8'
+    // テスト
+    testImplementation 'org.springframework.boot:spring-boot-starter-test'
+    testImplementation 'org.springframework.security:spring-security-test'
+    // サポートツール
+    developmentOnly 'org.springframework.boot:spring-boot-devtools'
 }
 
 compileKotlin {
-	kotlinOptions {
-		freeCompilerArgs = ["-Xjsr305=strict"]
-		jvmTarget = '17'
-	}
+    kotlinOptions {
+        freeCompilerArgs = ["-Xjsr305=strict"]
+        jvmTarget = '17'
+    }
 }
 
 /**
  * ローカル環境用のdockerを起動
  */
-task dockerComposeUp (type: Exec) {
-	commandLine 'docker-compose','-f','docker-local/docker-compose.yml','up','-d'
-	doLast {
-		// dockerが起動するまでスリープを設定(5秒は例)
-		Thread.sleep(5 * 1000)
-	}
+task dockerComposeUp(type: Exec) {
+    commandLine 'docker-compose', '-f', 'docker-local/docker-compose.yml', 'up', '-d'
+    doLast {
+        // dockerが起動するまでスリープを設定(5秒は例)
+        Thread.sleep(5 * 1000)
+    }
 }
 
 /**
  * ローカル環境用のdockerを停止
  */
-task dockerComposeDown (type: Exec) {
-	commandLine 'docker-compose', '-f', 'docker-local/docker-compose.yml', 'down', '--remove-orphans', '--volumes'
+task dockerComposeDown(type: Exec) {
+    commandLine 'docker-compose', '-f', 'docker-local/docker-compose.yml', 'down', '--remove-orphans', '--volumes'
 }
 
 /**
@@ -81,7 +81,7 @@ task dockerComposeDown (type: Exec) {
  * 組み込みのtomcatで起動する場合に使用します
  */
 bootRun {
-	systemProperty("spring.profiles.active", "local")
+    systemProperty("spring.profiles.active", "local")
 }
 
 /**
@@ -89,7 +89,7 @@ bootRun {
  * build/libs配下にwarが出力されます
  */
 bootWar {
-	archiveFileName = warArchiveFileName
+    archiveFileName = warArchiveFileName
 }
 
 /**
@@ -99,15 +99,15 @@ bootWar {
  * VMオプションに -Dspring.profiles.active=local を指定してください
  */
 war {
-	archiveFileName = warArchiveFileName
+    archiveFileName = warArchiveFileName
 }
 
 /**
  * テストの実行処理
  */
 test {
-	systemProperty("spring.profiles.active", "test")
-	useJUnitPlatform()
+    systemProperty("spring.profiles.active", "test")
+    useJUnitPlatform()
 //	dependsOn(dockerComposeUp)
 //	finalizedBy(dockerComposeDown)
 }

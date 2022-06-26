@@ -4,8 +4,8 @@ import org.springframework.validation.FieldError
 import java.io.Serializable
 
 data class ValidError(
-        val field: String,
-        val message: String?
+    val field: String,
+    val message: String?
 ) : Serializable {
 
     companion object {

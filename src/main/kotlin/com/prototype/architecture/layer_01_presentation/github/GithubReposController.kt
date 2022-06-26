@@ -10,13 +10,13 @@ import org.springframework.web.bind.annotation.RestController
 @RestController
 @RequestMapping("/github/repos/{githubUserName}")
 class GithubReposController(
-        private val githubReposGetUseCase: GithubReposGetUseCase
+    private val githubReposGetUseCase: GithubReposGetUseCase
 ) {
 
     @GetMapping
     fun get(@PathVariable("githubUserName") githubUserName: GithubUserName): List<GithubReposResponse>? {
         return githubReposGetUseCase.invoke(githubUserName)
-                ?.map { GithubReposResponse(it.id, it.name, it.private) }
+            ?.map { GithubReposResponse(it.id, it.name, it.private) }
     }
 
 }

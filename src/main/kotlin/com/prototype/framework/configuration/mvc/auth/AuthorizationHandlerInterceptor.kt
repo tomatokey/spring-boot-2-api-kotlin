@@ -1,7 +1,7 @@
 package com.prototype.framework.configuration.mvc.auth;
 
-import com.prototype.architecture.layer_03_domain.user.auth.AuthUser
 import com.prototype.architecture.layer_03_domain.user.UserId
+import com.prototype.architecture.layer_03_domain.user.auth.AuthUser
 import com.prototype.architecture.layer_03_domain.user.role.UserRoleType
 import org.springframework.core.annotation.AnnotationUtils
 import org.springframework.http.HttpStatus
@@ -45,7 +45,8 @@ class AuthorizationHandlerInterceptor : HandlerInterceptor {
         val controller: Class<*> = method.declaringClass
         // Controllerまたはメソッドに@Authorizeが付与されているか確認
         if (AnnotationUtils.findAnnotation(controller, Authorize::class.java) != null
-                || AnnotationUtils.findAnnotation(method, Authorize::class.java) != null) {
+            || AnnotationUtils.findAnnotation(method, Authorize::class.java) != null
+        ) {
             return true
         }
 
@@ -74,7 +75,7 @@ class AuthorizationHandlerInterceptor : HandlerInterceptor {
 
         for (role in roles) {
             if (!authUser.userRoleTypes.contains(role)) {
-                throw ResponseStatusException (HttpStatus.FORBIDDEN)
+                throw ResponseStatusException(HttpStatus.FORBIDDEN)
             }
         }
     }

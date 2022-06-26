@@ -5,7 +5,7 @@ import org.springframework.stereotype.Service
 
 @Service
 class FindAllUserUseCase(
-        val userRepository: UserRepository
+    val userRepository: UserRepository
 ) {
 
     operator fun invoke(): List<FindUserOutput> {

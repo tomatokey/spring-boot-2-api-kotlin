@@ -8,11 +8,11 @@ import org.springframework.data.relational.core.mapping.Table
 
 @Table(TABLE_NAME)
 data class UserEntity(
-        @Id
-        @Column(USER_ID)
-        val userId: UserId? = null,
-        @Column(USER_NAME)
-        val userName: UserName
+    @Id
+    @Column(USER_ID)
+    val userId: UserId? = null,
+    @Column(USER_NAME)
+    val userName: UserName
 ) : Entity() {
 
     companion object {

@@ -19,7 +19,12 @@ class SwaggerConfiguration {
     @Bean
     fun customOpenAPI(): OpenAPI {
         return OpenAPI()
-                .components(Components().addSecuritySchemes("token", SecurityScheme().type(SecurityScheme.Type.HTTP).scheme("bearer")))
-                .addSecurityItem(SecurityRequirement().addList("token"))
+            .components(
+                Components().addSecuritySchemes(
+                    "token",
+                    SecurityScheme().type(SecurityScheme.Type.HTTP).scheme("bearer")
+                )
+            )
+            .addSecurityItem(SecurityRequirement().addList("token"))
     }
 }

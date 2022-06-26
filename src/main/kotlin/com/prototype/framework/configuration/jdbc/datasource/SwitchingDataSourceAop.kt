@@ -23,7 +23,7 @@ class SwitchingDataSourceAop {
      */
     @Around("@annotation(tran)")
     @Throws(Throwable::class)
-    fun switchingDataSource(pjp: ProceedingJoinPoint, tran: TransactionalForUpd): Any {
+    fun switchingDataSource(pjp: ProceedingJoinPoint, tran: TransactionalForUpd): Any? {
         return try {
             MultiDataSourceContextHolder.dataSourceType = DataSourceType.UPD
             pjp.proceed()
@@ -43,7 +43,8 @@ class SwitchingDataSourceAop {
      */
     @Around("@annotation(tran)")
     @Throws(Throwable::class)
-    fun switchingForMethod(pjp: ProceedingJoinPoint, tran: Transactional): Any {
+    fun switchingForMethod(pjp: ProceedingJoinPoint, tran: Transactional): Any? {
         throw IllegalAccessException(String.format("@TransactionalForUpdを使用してください。使用箇所=[%s]", pjp.signature))
     }
+
 }

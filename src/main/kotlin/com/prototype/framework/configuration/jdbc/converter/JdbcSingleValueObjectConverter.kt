@@ -5,7 +5,6 @@ import com.prototype.framework.extension.toSingleValueObject
 import org.springframework.core.convert.TypeDescriptor
 import org.springframework.core.convert.converter.GenericConverter
 import org.springframework.core.convert.converter.GenericConverter.ConvertiblePair
-import java.lang.reflect.ParameterizedType
 
 /**
  * ValueObjectを継承したクラスをEntityで使用するためのコンバーター
@@ -14,12 +13,12 @@ class JdbcSingleValueObjectConverter : GenericConverter {
 
     override fun getConvertibleTypes(): MutableSet<ConvertiblePair>? {
         return listOf(
-                // DB参照用
-                ConvertiblePair(String::class.java, SingleValueObject::class.java),
-                ConvertiblePair(Number::class.java, SingleValueObject::class.java),
-                // DB更新用
-                ConvertiblePair(SingleValueObject::class.java, String::class.java),
-                ConvertiblePair(SingleValueObject::class.java, Number::class.java)
+            // DB参照用
+            ConvertiblePair(String::class.java, SingleValueObject::class.java),
+            ConvertiblePair(Number::class.java, SingleValueObject::class.java),
+            // DB更新用
+            ConvertiblePair(SingleValueObject::class.java, String::class.java),
+            ConvertiblePair(SingleValueObject::class.java, Number::class.java)
         ).toMutableSet()
     }
 

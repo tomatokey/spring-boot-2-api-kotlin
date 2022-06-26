@@ -16,7 +16,7 @@ class WebMvcConfiguration : WebMvcConfigurer {
 
     override fun addInterceptors(registry: InterceptorRegistry) {
         registry.addInterceptor(authorizationHandlerInterceptor())
-                .addPathPatterns("/**")
+            .addPathPatterns("/**")
     }
 
 }

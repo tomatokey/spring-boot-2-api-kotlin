@@ -6,7 +6,13 @@ import java.lang.annotation.Inherited
 
 @MustBeDocumented
 @Retention(AnnotationRetention.RUNTIME)
-@Target(AnnotationTarget.FUNCTION, AnnotationTarget.TYPE, AnnotationTarget.TYPE_PARAMETER, AnnotationTarget.VALUE_PARAMETER, AnnotationTarget.FIELD)
+@Target(
+    AnnotationTarget.FUNCTION,
+    AnnotationTarget.TYPE,
+    AnnotationTarget.TYPE_PARAMETER,
+    AnnotationTarget.VALUE_PARAMETER,
+    AnnotationTarget.FIELD
+)
 @Inherited
 @Qualifier
 annotation class DataSourceUpd

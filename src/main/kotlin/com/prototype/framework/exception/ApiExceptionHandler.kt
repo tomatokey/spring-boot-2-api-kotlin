@@ -27,7 +27,13 @@ class ApiExceptionHandler : ResponseEntityExceptionHandler() {
      * @param request
      * @return
      */
-    override fun handleExceptionInternal(ex: Exception, @Nullable body: Any?, headers: HttpHeaders, status: HttpStatus, request: WebRequest): ResponseEntity<Any> {
+    override fun handleExceptionInternal(
+        ex: Exception,
+        @Nullable body: Any?,
+        headers: HttpHeaders,
+        status: HttpStatus,
+        request: WebRequest
+    ): ResponseEntity<Any> {
         log.error(ex.message, ex)
         return body?.let {
             super.handleExceptionInternal(ex, body, headers, status, request)
@@ -46,14 +52,19 @@ class ApiExceptionHandler : ResponseEntityExceptionHandler() {
      * @param request
      * @return
      */
-    override fun handleMethodArgumentNotValid(ex: MethodArgumentNotValidException, headers: HttpHeaders, status: HttpStatus, request: WebRequest): ResponseEntity<Any> {
+    override fun handleMethodArgumentNotValid(
+        ex: MethodArgumentNotValidException,
+        headers: HttpHeaders,
+        status: HttpStatus,
+        request: WebRequest
+    ): ResponseEntity<Any> {
         val errors = ex.bindingResult.fieldErrors.stream()
-                .map { error: FieldError -> ValidError.of(error) }
-                .collect(Collectors.toList())
+            .map { error: FieldError -> ValidError.of(error) }
+            .collect(Collectors.toList())
         val errorResponse = ErrorResponse(
-                status,
-                "パラメータが不正です",
-                errors
+            status,
+            "パラメータが不正です",
+            errors
         )
         return handleExceptionInternal(ex, errorResponse, HttpHeaders.EMPTY, status, request)
     }

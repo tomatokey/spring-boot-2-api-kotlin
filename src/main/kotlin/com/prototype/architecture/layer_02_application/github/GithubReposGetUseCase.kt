@@ -7,9 +7,9 @@ import org.springframework.stereotype.Service
 
 @Service
 class GithubReposGetUseCase(
-        private val githubReposRepository: GithubReposRepository
+    private val githubReposRepository: GithubReposRepository
 ) {
-    fun invoke(githubUserName: GithubUserName) : List<GithubReposEntity>? {
+    fun invoke(githubUserName: GithubUserName): List<GithubReposEntity>? {
         return githubReposRepository.get(githubUserName)
     }
 }

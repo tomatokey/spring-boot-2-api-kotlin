@@ -29,19 +29,25 @@ class JacksonConfiguration {
     @Bean
     fun createObjectMapperBuilder(): Jackson2ObjectMapperBuilder {
         val jtm = JavaTimeModule()
-        jtm.addSerializer(LocalDateTime::class.java, LocalDateTimeSerializer(DateTimeFormatter.ofPattern(DATE_TIME_FORMAT)))
-        jtm.addDeserializer(LocalDateTime::class.java, LocalDateTimeDeserializer(DateTimeFormatter.ofPattern(DATE_TIME_FORMAT)))
+        jtm.addSerializer(
+            LocalDateTime::class.java,
+            LocalDateTimeSerializer(DateTimeFormatter.ofPattern(DATE_TIME_FORMAT))
+        )
+        jtm.addDeserializer(
+            LocalDateTime::class.java,
+            LocalDateTimeDeserializer(DateTimeFormatter.ofPattern(DATE_TIME_FORMAT))
+        )
         val kotlinModule = KotlinModule.Builder().build()
 
         return Jackson2ObjectMapperBuilder() // 変換モジュールの設定
-                .modules(ParameterNamesModule(), Jdk8Module(), jtm, kotlinModule) // 日付型のタイムゾーン設定
-                .timeZone(TimeZone.getTimeZone("Asia/Tokyo")) // Date型専用のフォーマット設定
-                .dateFormat(SimpleDateFormat(DATE_TIME_FORMAT)) // jsonのプロパティ名はスネーク型とする(変換詳細はSnakeCaseStrategyクラスを参照)
-                .propertyNamingStrategy(PropertyNamingStrategies.SNAKE_CASE) // オブジェクトのプロパティがnullの場合、jsonに変換する際に含まれなくなります
-                .serializationInclusion(JsonInclude.Include.NON_NULL) // 無効にする機能
-                .featuresToDisable( // オブジェクトに存在しないプロパティがjsonに含まれている場合にエラーにする機能を無効化
-                        DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES
-                )
+            .modules(ParameterNamesModule(), Jdk8Module(), jtm, kotlinModule) // 日付型のタイムゾーン設定
+            .timeZone(TimeZone.getTimeZone("Asia/Tokyo")) // Date型専用のフォーマット設定
+            .dateFormat(SimpleDateFormat(DATE_TIME_FORMAT)) // jsonのプロパティ名はスネーク型とする(変換詳細はSnakeCaseStrategyクラスを参照)
+            .propertyNamingStrategy(PropertyNamingStrategies.SNAKE_CASE) // オブジェクトのプロパティがnullの場合、jsonに変換する際に含まれなくなります
+            .serializationInclusion(JsonInclude.Include.NON_NULL) // 無効にする機能
+            .featuresToDisable( // オブジェクトに存在しないプロパティがjsonに含まれている場合にエラーにする機能を無効化
+                DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES
+            )
     }
 
     companion object {

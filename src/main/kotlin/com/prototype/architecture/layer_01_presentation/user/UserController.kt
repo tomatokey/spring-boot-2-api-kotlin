@@ -4,8 +4,8 @@ import com.prototype.architecture.layer_02_application.user.create.CreateUserInp
 import com.prototype.architecture.layer_02_application.user.create.CreateUserUseCase
 import com.prototype.architecture.layer_02_application.user.find.FindAllUserUseCase
 import com.prototype.architecture.layer_02_application.user.find.FindByIdUserUseCase
-import com.prototype.architecture.layer_03_domain.user.auth.GetAuthUserService
 import com.prototype.architecture.layer_03_domain.user.UserId
+import com.prototype.architecture.layer_03_domain.user.auth.GetAuthUserService
 import com.prototype.architecture.layer_03_domain.user.role.UserRoleType
 import com.prototype.framework.configuration.mvc.auth.Authorize
 import org.springframework.http.ResponseEntity
@@ -15,10 +15,10 @@ import org.springframework.web.bind.annotation.*
 @RestController
 @RequestMapping("/users")
 class UserController(
-        private val createUserUseCase: CreateUserUseCase,
-        private val findAllUserUseCase: FindAllUserUseCase,
-        private val findByIdUserUseCase: FindByIdUserUseCase,
-        private val authService: GetAuthUserService
+    private val createUserUseCase: CreateUserUseCase,
+    private val findAllUserUseCase: FindAllUserUseCase,
+    private val findByIdUserUseCase: FindByIdUserUseCase,
+    private val authService: GetAuthUserService
 ) {
 
     @PostMapping
@@ -39,21 +39,21 @@ class UserController(
     fun findByToken(): ResponseEntity<UserResponse> {
         val authUser = authService()
         return findByIdUserUseCase(authUser.userId)
-                .map { UserResponse.of(it) }
-                .let { ResponseEntity.of(it) }
+            .map { UserResponse.of(it) }
+            .let { ResponseEntity.of(it) }
     }
 
     @GetMapping("{userId}")
     fun findByPathId(@PathVariable("userId") userId: UserId): ResponseEntity<UserResponse> {
         return findByIdUserUseCase(userId)
-                .map { UserResponse.of(it) }
-                .let { ResponseEntity.of(it) }
+            .map { UserResponse.of(it) }
+            .let { ResponseEntity.of(it) }
     }
 
     @GetMapping("findById")
     fun findById(@RequestParam("userId") userId: UserId): ResponseEntity<UserResponse> {
         return findByIdUserUseCase(userId)
-                .map { UserResponse.of(it) }
-                .let { ResponseEntity.of(it) }
+            .map { UserResponse.of(it) }
+            .let { ResponseEntity.of(it) }
     }
 }

@@ -15,8 +15,8 @@ import javax.sql.DataSource
 
 @Repository
 class DefaultUserRoleRepository(
-        private val dataSource: DataSource,
-        private val jdbcTemplate: NamedParameterJdbcTemplate
+    private val dataSource: DataSource,
+    private val jdbcTemplate: NamedParameterJdbcTemplate
 ) : UserRoleRepository<UserRoleEntity, UserRolePk> {
 
     override fun save(entity: UserRoleEntity): UserRoleEntity {

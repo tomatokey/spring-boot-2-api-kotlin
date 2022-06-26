@@ -10,12 +10,12 @@ import org.springframework.data.relational.core.mapping.Table
 
 @Table(TABLE_NAME)
 data class UserRoleEntity(
-        @Id
-        @Column(UserEntity.USER_ID)
-        val userId: UserId,
-        @Id
-        @Column(USER_ROLE_TYPE)
-        val roleType: UserRoleType
+    @Id
+    @Column(UserEntity.USER_ID)
+    val userId: UserId,
+    @Id
+    @Column(USER_ROLE_TYPE)
+    val roleType: UserRoleType
 ) : Entity() {
 
     val pk: UserRolePk
