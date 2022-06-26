@@ -48,7 +48,8 @@ class JdbcConfiguration : AbstractJdbcConfiguration() {
     }
 
     @Bean(TRANSACTION_MANAGER)
-    fun transactionManager(@DataSourceUpd dataSource: DataSource): JdbcTransactionManager {
+    @Primary
+    fun transactionManager(dataSource: DataSource): JdbcTransactionManager {
         val transactionManager = JdbcTransactionManager(dataSource)
         // コミット時にエラーが発生した場合、ロールバックを行うように設定
         // コネクションプールを使用しているため、コミットフェーズでエラーになったコネクションが別の処理で使われ、失敗した操作が一緒にコミットされることを防ぐため

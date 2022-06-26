@@ -12,10 +12,13 @@ import java.lang.annotation.Inherited
 @Inherited
 @Sql
 annotation class SqlForUpd(
-        @get:AliasFor(annotation = Sql::class, attribute = "scripts")
-        vararg val value: String = [],
-        @get:AliasFor(annotation = Sql::class, attribute = "value")
-        val scripts: Array<String> = [],
-        @get:AliasFor(annotation = Sql::class, attribute = "config")
-        val config: SqlConfig = SqlConfig(dataSource = JdbcConfiguration.DATA_SOURCE_UPD)
+    @get:AliasFor(annotation = Sql::class, attribute = "scripts")
+    vararg val value: String = [],
+    @get:AliasFor(annotation = Sql::class, attribute = "value")
+    val scripts: Array<String> = [],
+    @get:AliasFor(annotation = Sql::class, attribute = "config")
+    val config: SqlConfig = SqlConfig(
+        dataSource = JdbcConfiguration.DATA_SOURCE_UPD,
+        transactionManager = PrototypeTestConfiguration.TRANSACTION_MANAGER
+    )
 )
